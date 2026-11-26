@@ -1,0 +1,335 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-26T00:00:00Z",
+  "title": "Design System: Harudot by Nana Coffee Roasters",
+  "extensions": {
+    "colorMeta": {
+      "clay": {
+        "role": "primary",
+        "displayName": "Section Clay",
+        "canonical": "oklch(0.77 0.068 40)",
+        "tonalRamp": [
+          "oklch(0.15 0.013 40)",
+          "oklch(0.27 0.036 40)",
+          "oklch(0.39 0.055 40)",
+          "oklch(0.51 0.073 40)",
+          "oklch(0.63 0.081 40)",
+          "oklch(0.75 0.064 40)",
+          "oklch(0.87 0.046 40)",
+          "oklch(0.95 0.032 40)"
+        ]
+      },
+      "clay-deep": {
+        "role": "primary",
+        "displayName": "Hatch Clay",
+        "canonical": "oklch(0.69 0.085 40)",
+        "tonalRamp": [
+          "oklch(0.15 0.016 40)",
+          "oklch(0.27 0.042 40)",
+          "oklch(0.39 0.065 40)",
+          "oklch(0.51 0.085 40)",
+          "oklch(0.63 0.095 40)",
+          "oklch(0.75 0.075 40)",
+          "oklch(0.87 0.054 40)",
+          "oklch(0.95 0.038 40)"
+        ]
+      },
+      "clay-wash": {
+        "role": "primary",
+        "displayName": "Clay Wash",
+        "canonical": "oklch(0.9 0.03 40)",
+        "tonalRamp": [
+          "oklch(0.15 0.006 40)",
+          "oklch(0.27 0.017 40)",
+          "oklch(0.39 0.026 40)",
+          "oklch(0.51 0.034 40)",
+          "oklch(0.63 0.038 40)",
+          "oklch(0.75 0.03 40)",
+          "oklch(0.87 0.021 40)",
+          "oklch(0.95 0.015 40)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Drafting Film",
+        "canonical": "oklch(0.962 0.004 220)",
+        "tonalRamp": [
+          "oklch(0.15 0.002 220)",
+          "oklch(0.27 0.003 220)",
+          "oklch(0.39 0.004 220)",
+          "oklch(0.51 0.005 220)",
+          "oklch(0.63 0.006 220)",
+          "oklch(0.75 0.005 220)",
+          "oklch(0.87 0.003 220)",
+          "oklch(0.95 0.002 220)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Drawing Ink",
+        "canonical": "oklch(0.2 0.008 240)",
+        "tonalRamp": [
+          "oklch(0.15 0.002 240)",
+          "oklch(0.27 0.004 240)",
+          "oklch(0.39 0.006 240)",
+          "oklch(0.51 0.009 240)",
+          "oklch(0.63 0.01 240)",
+          "oklch(0.75 0.008 240)",
+          "oklch(0.87 0.005 240)",
+          "oklch(0.95 0.004 240)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "canonical": "oklch(0.4 0.012 240)",
+        "tonalRamp": [
+          "oklch(0.15 0.002 240)",
+          "oklch(0.27 0.006 240)",
+          "oklch(0.39 0.009 240)",
+          "oklch(0.51 0.012 240)",
+          "oklch(0.63 0.013 240)",
+          "oklch(0.75 0.011 240)",
+          "oklch(0.87 0.008 240)",
+          "oklch(0.95 0.005 240)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The branch name at the head of its sheet; haruno, lowercase."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section heads on a 3px ink rule."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Branch names in lists, cells and the pager; story headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text in Thai and English, capped at 62ch."
+      },
+      "value": {
+        "displayName": "Value",
+        "purpose": "The fact inside a title-block cell."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Tracked uppercase lettering above a fact; Faded Ink."
+      },
+      "control": {
+        "displayName": "Control",
+        "purpose": "Buttons, navigation, tags and chips."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The one easing, for every transition and drawn line."
+      },
+      {
+        "name": "state",
+        "value": "0.18s",
+        "purpose": "Button and pager fill changes."
+      },
+      {
+        "name": "leader-draw",
+        "value": "0.9s, 0.25s delay, once on load",
+        "purpose": "Map leader lines draw from point to name."
+      },
+      {
+        "name": "cut-sweep",
+        "value": "700ms, 0 to 58%",
+        "purpose": "The cut wipes across the plate when a branch is selected; skipped under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sheet-max",
+        "value": "1520px"
+      },
+      {
+        "name": "medium",
+        "value": "1100px"
+      },
+      {
+        "name": "stacked",
+        "value": "820px"
+      },
+      {
+        "name": "narrow",
+        "value": "600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "The default action: paper fill, ink rule, inverts to ink on hover.",
+      "html": "<a class=\"ds-btn\" href=\"#\">See this branch<svg viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" aria-hidden=\"true\"><path d=\"M1 8h13M9 3l5 5-5 5\"/></svg></a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; min-height: 3rem; padding: 0.7rem 1.15rem; border: 1px solid var(--ink, oklch(0.2 0.008 240)); border-radius: 0; background: var(--paper, oklch(0.962 0.004 220)); color: var(--ink, oklch(0.2 0.008 240)); font: 600 0.8125rem/1.3 var(--letter, \"Bai Jamjuree\", \"Noto Sans Thai\", system-ui, sans-serif); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background-color 0.18s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)), color 0.18s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-btn svg { width: 1rem; height: 1rem; flex: none; } .ds-btn:hover { background: var(--ink, oklch(0.2 0.008 240)); color: var(--paper, oklch(0.962 0.004 220)); } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 2px solid var(--ink, oklch(0.2 0.008 240)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Primary Button (Directions)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The clay-filled primary action. Directions only.",
+      "html": "<a class=\"ds-btn ds-btn-fill\" href=\"#\">Directions<svg viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"5\" r=\"3\"/><path d=\"M8 8v7\"/></svg></a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; min-height: 3rem; padding: 0.7rem 1.15rem; border: 1px solid var(--ink, oklch(0.2 0.008 240)); border-radius: 0; background: var(--paper, oklch(0.962 0.004 220)); color: var(--ink, oklch(0.2 0.008 240)); font: 600 0.8125rem/1.3 var(--letter, \"Bai Jamjuree\", \"Noto Sans Thai\", system-ui, sans-serif); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background-color 0.18s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)), color 0.18s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-btn svg { width: 1rem; height: 1rem; flex: none; } .ds-btn:hover { background: var(--ink, oklch(0.2 0.008 240)); color: var(--paper, oklch(0.962 0.004 220)); } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 2px solid var(--ink, oklch(0.2 0.008 240)); outline-offset: 3px; } .ds-btn-fill { background: var(--clay, oklch(0.77 0.068 40)); } .ds-btn-fill:hover { background: var(--ink, oklch(0.2 0.008 240)); color: var(--paper, oklch(0.962 0.004 220)); }"
+    },
+    {
+      "name": "Unavailable Button",
+      "kind": "button",
+      "refersTo": "button-disabled",
+      "description": "An action whose target is not ready yet: dashed border, faded lettering, no icon.",
+      "html": "<a class=\"ds-btn ds-btn-off\" aria-disabled=\"true\">Page coming soon</a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; min-height: 3rem; padding: 0.7rem 1.15rem; border: 1px solid var(--ink, oklch(0.2 0.008 240)); border-radius: 0; background: var(--paper, oklch(0.962 0.004 220)); color: var(--ink, oklch(0.2 0.008 240)); font: 600 0.8125rem/1.3 var(--letter, \"Bai Jamjuree\", \"Noto Sans Thai\", system-ui, sans-serif); letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background-color 0.18s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)), color 0.18s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-btn svg { width: 1rem; height: 1rem; flex: none; } .ds-btn:hover { background: var(--ink, oklch(0.2 0.008 240)); color: var(--paper, oklch(0.962 0.004 220)); } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 2px solid var(--ink, oklch(0.2 0.008 240)); outline-offset: 3px; } .ds-btn-off { border-style: dashed; color: var(--ink-2, oklch(0.4 0.012 240)); pointer-events: none; }"
+    },
+    {
+      "name": "Language Switch",
+      "kind": "custom",
+      "refersTo": "language-switch",
+      "description": "Two joined cells; the language in use is ink-filled.",
+      "html": "<div class=\"ds-lang\" role=\"group\" aria-label=\"Language\"><button type=\"button\" aria-pressed=\"true\">EN</button><button type=\"button\" aria-pressed=\"false\" lang=\"th\">ไทย</button></div>",
+      "css": ".ds-lang { display: inline-flex; border: 1px solid var(--ink, oklch(0.2 0.008 240)); } .ds-lang button { appearance: none; background: none; border: 0; border-radius: 0; min-width: 3rem; min-height: 2.5rem; padding: 0 0.7rem; font: 600 0.8125rem var(--letter, \"Bai Jamjuree\", \"Noto Sans Thai\", system-ui, sans-serif); letter-spacing: 0.06em; color: var(--ink, oklch(0.2 0.008 240)); cursor: pointer; } .ds-lang button + button { border-left: 1px solid var(--ink, oklch(0.2 0.008 240)); } .ds-lang button[aria-pressed=\"true\"] { background: var(--ink, oklch(0.2 0.008 240)); color: var(--paper, oklch(0.962 0.004 220)); } .ds-lang button:hover:not([aria-pressed=\"true\"]) { background: var(--clay-wash, oklch(0.9 0.03 40)); } .ds-lang button:focus-visible { outline: 2px solid var(--ink, oklch(0.2 0.008 240)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "description": "Masthead lettering links; hover and current page take a 2px ink underline.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Branches</a><a href=\"#\">Promotions</a><a href=\"#\">About</a><a href=\"#\">Contact</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 2.25rem; align-items: center; padding: 18px 0 16px; border-bottom: 1px solid var(--ink, oklch(0.2 0.008 240)); } .ds-nav a { display: inline-block; padding-block: 0.6rem; font: 500 0.8125rem var(--letter, \"Bai Jamjuree\", \"Noto Sans Thai\", system-ui, sans-serif); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink, oklch(0.2 0.008 240)); text-decoration: none; border-bottom: 2px solid transparent; } .ds-nav a:hover, .ds-nav a[aria-current] { border-bottom-color: var(--ink, oklch(0.2 0.008 240)); } .ds-nav a:focus-visible { outline: 2px solid var(--ink, oklch(0.2 0.008 240)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Title Block",
+      "kind": "card",
+      "refersTo": "title-block-cell",
+      "description": "Ruled cells of facts with the primary action filling its own cell. The system's container in place of a card.",
+      "html": "<div class=\"ds-tb\"><div><span class=\"ds-tb-lbl\">Branch</span><p class=\"ds-tb-name\">chonburi</p></div><div><span class=\"ds-tb-lbl\">Today</span><p class=\"ds-tb-val\">07:00 to 18:00<br><span class=\"ds-tb-state\"><i></i>Open now, closes 18:00</span></p></div><div><span class=\"ds-tb-lbl\">Call</span><p class=\"ds-tb-val\"><a href=\"#\">062 415 4793</a></p></div><div class=\"ds-tb-act\"><a class=\"ds-tb-btn\" href=\"#\">Directions<svg viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"5\" r=\"3\"/><path d=\"M8 8v7\"/></svg></a></div></div>",
+      "css": ".ds-tb { display: grid; grid-template-columns: 1.5fr 1.25fr 1fr auto; border: 1px solid var(--ink, oklch(0.2 0.008 240)); overflow: hidden; background: var(--paper, oklch(0.962 0.004 220)); color: var(--ink, oklch(0.2 0.008 240)); font-family: var(--letter, \"Bai Jamjuree\", \"Noto Sans Thai\", system-ui, sans-serif); } .ds-tb > * { padding: 0.8rem 1rem; border-right: 1px solid var(--ink, oklch(0.2 0.008 240)); border-bottom: 1px solid var(--ink, oklch(0.2 0.008 240)); margin: 0 -1px -1px 0; min-width: 0; } .ds-tb p { margin: 0; } .ds-tb-lbl { display: block; margin-bottom: 0.3rem; font-size: 0.75rem; line-height: 1.3; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2, oklch(0.4 0.012 240)); } .ds-tb-val { font-size: 1rem; line-height: 1.4; font-weight: 500; } .ds-tb-val a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.22em; } .ds-tb-val a:hover { text-decoration-thickness: 2px; } .ds-tb-name { font-family: var(--name, \"haruno\", \"Bai Jamjuree\", \"Noto Sans Thai\", sans-serif); font-weight: 300; font-size: 1.75rem; line-height: 1.1; letter-spacing: 0.01em; } .ds-tb-state { display: inline-flex; align-items: baseline; gap: 0.5rem; } .ds-tb-state i { width: 0.6rem; height: 0.6rem; border-radius: 50%; border: 1px solid var(--ink, oklch(0.2 0.008 240)); background: var(--clay, oklch(0.77 0.068 40)); align-self: center; flex: none; } .ds-tb .ds-tb-act { padding: 0; display: grid; } .ds-tb-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; padding: 0.7rem 1.15rem; background: var(--clay, oklch(0.77 0.068 40)); color: var(--ink, oklch(0.2 0.008 240)); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background-color 0.18s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)), color 0.18s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-tb-btn svg { width: 1rem; height: 1rem; } .ds-tb-btn:hover { background: var(--ink, oklch(0.2 0.008 240)); color: var(--paper, oklch(0.962 0.004 220)); } .ds-tb-btn:focus-visible { outline: 2px solid var(--ink, oklch(0.2 0.008 240)); outline-offset: -4px; }"
+    },
+    {
+      "name": "Ground Line",
+      "kind": "custom",
+      "description": "The 3px ink rule over clay hatch that everything above stands on.",
+      "html": "<div class=\"ds-ground\"></div>",
+      "css": ".ds-ground { height: 22px; border-top: 3px solid var(--ink, oklch(0.2 0.008 240)); background: repeating-linear-gradient(135deg, var(--clay-deep, oklch(0.69 0.085 40)) 0 1.5px, transparent 1.5px 9px); }"
+    },
+    {
+      "name": "Crossed Rectangle",
+      "kind": "custom",
+      "refersTo": "void",
+      "description": "The only stand-in for a photograph or block not yet supplied.",
+      "html": "<div class=\"ds-void\"><p>Photographs to come</p></div>",
+      "css": ".ds-void { display: grid; place-items: center; min-height: 12rem; border: 1px solid var(--ink, oklch(0.2 0.008 240)); background: linear-gradient(to top right, transparent calc(50% - 0.5px), var(--ink, oklch(0.2 0.008 240)) calc(50% - 0.5px), var(--ink, oklch(0.2 0.008 240)) calc(50% + 0.5px), transparent calc(50% + 0.5px)), linear-gradient(to bottom right, transparent calc(50% - 0.5px), var(--ink, oklch(0.2 0.008 240)) calc(50% - 0.5px), var(--ink, oklch(0.2 0.008 240)) calc(50% + 0.5px), transparent calc(50% + 0.5px)); } .ds-void p { margin: 0; background: var(--paper, oklch(0.962 0.004 220)); border: 1px solid var(--ink, oklch(0.2 0.008 240)); padding: 0.5rem 0.9rem; font: 600 0.8125rem var(--letter, \"Bai Jamjuree\", \"Noto Sans Thai\", system-ui, sans-serif); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink, oklch(0.2 0.008 240)); text-align: center; max-width: 86%; }"
+    },
+    {
+      "name": "Branch List Row",
+      "kind": "custom",
+      "refersTo": "branch-row",
+      "description": "A ruled row in the branch index; the name selects the branch on the map.",
+      "html": "<div class=\"ds-row\"><span class=\"ds-row-n\">04</span><button type=\"button\" class=\"ds-row-name\">sukhumvit <span>22</span></button><p>Khlong Toei, Bangkok</p><a class=\"ds-row-btn\" href=\"#\">Directions<svg viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.2\" aria-hidden=\"true\"><circle cx=\"8\" cy=\"5\" r=\"3\"/><path d=\"M8 8v7\"/></svg></a></div>",
+      "css": ".ds-row { display: grid; grid-template-columns: 3rem 1.5fr 1.2fr auto; gap: 0.5rem 1.5rem; align-items: center; padding: 1.05rem 0.9rem; border-bottom: 1px solid var(--ink, oklch(0.2 0.008 240)); color: var(--ink, oklch(0.2 0.008 240)); font-family: var(--letter, \"Bai Jamjuree\", \"Noto Sans Thai\", system-ui, sans-serif); } .ds-row p { margin: 0; font-size: 0.9375rem; } .ds-row-n { font-size: 0.875rem; color: var(--ink-2, oklch(0.4 0.012 240)); font-variant-numeric: tabular-nums; } .ds-row-name { appearance: none; background: none; border: 0; padding: 0; text-align: left; cursor: pointer; color: inherit; font-family: var(--name, \"haruno\", \"Bai Jamjuree\", \"Noto Sans Thai\", sans-serif); font-weight: 300; font-size: 2.25rem; line-height: 1.1; } .ds-row-name span { font-size: 0.82em; font-family: var(--letter, \"Bai Jamjuree\", \"Noto Sans Thai\", system-ui, sans-serif); } .ds-row-name:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.18em; text-decoration-color: var(--clay-deep, oklch(0.69 0.085 40)); } .ds-row-name:focus-visible, .ds-row-btn:focus-visible { outline: 2px solid var(--ink, oklch(0.2 0.008 240)); outline-offset: 3px; } .ds-row-btn { display: inline-flex; align-items: center; gap: 0.6rem; min-height: 2.75rem; padding: 0.7rem 0.9rem; border: 1px solid var(--ink, oklch(0.2 0.008 240)); background: var(--paper, oklch(0.962 0.004 220)); color: var(--ink, oklch(0.2 0.008 240)); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background-color 0.18s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)), color 0.18s var(--ease, cubic-bezier(0.16, 1, 0.3, 1)); } .ds-row-btn svg { width: 1rem; height: 1rem; } .ds-row-btn:hover { background: var(--ink, oklch(0.2 0.008 240)); color: var(--paper, oklch(0.962 0.004 220)); }"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Ink-filled marker. In the build it flags sample and to-confirm content.",
+      "html": "<span class=\"ds-chip\">Sample</span>",
+      "css": ".ds-chip { display: inline-block; background: var(--ink, oklch(0.2 0.008 240)); color: var(--paper, oklch(0.962 0.004 220)); padding: 0.15rem 0.5rem; font: 600 0.6875rem/1.55 var(--letter, \"Bai Jamjuree\", \"Noto Sans Thai\", system-ui, sans-serif); letter-spacing: 0.1em; text-transform: uppercase; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Drawing Set",
+    "overview": "The site is the drawing set of the cafés. Each branch is a sheet, a photograph is a plate on that sheet, and facts sit in ruled title blocks the way a drawing's own title block holds its scale and date. The ground is a cool drafting-film white, everything drawn or ruled is one black line, and a single clay fill marks what the drawing has cut through or picked out.\n\nThe system is quiet so the buildings are not. Photographs carry all the colour and all the warmth; the interface around them is line, lettering and paper. Density is that of a well-kept sheet: generous margins, facts packed tight inside their cells, long clear runs between sections. Depth comes from overlap only. There are no shadows, no colour blends, no softened corners and no glass.\n\nTwo languages share every page with equal weight. haruno, the brand's own monoline face, letters the names; Bai Jamjuree sets everything else in Thai and English, in its light weight wherever it has to stand beside haruno's hairline. Controls are worded for a café visitor (Directions, See this branch, Drag the cut), never in drawing-office terms.",
+    "keyCharacteristics": [
+      "Paper, one ink, one fill: cool white ground, black line, clay pink.",
+      "Two line weights (1px drawn, 3px ground and section heads) plus one dashed cut line.",
+      "Facts live in ruled title-block cells, not cards.",
+      "Photographs are plates shown whole; only the section-cut plate joins two in one frame.",
+      "A crossed rectangle is the only stand-in for anything not yet supplied.",
+      "Square corners everywhere; circles only where a drawing uses them (section marks, points, state dots).",
+      "Lines draw and plates wipe along the cut; nothing fades up or floats.",
+      "Thai and English as [data-l] pairs, one shown at a time."
+    ],
+    "rules": [
+      {
+        "name": "The One Fill Rule",
+        "body": "Clay is the drawing's only fill and it has three jobs: the hatch under the ground line, the selected branch, and the primary action (Directions). If a fourth use is proposed, it is wrong; use ink or paper.",
+        "section": "colors"
+      },
+      {
+        "name": "The Photographs Carry Colour Rule",
+        "body": "No colour enters the interface that is not paper, ink or clay. Warmth, wood, sky and grass arrive in the plates and nowhere else.",
+        "section": "colors"
+      },
+      {
+        "name": "The Hairline Rule",
+        "body": "Whatever stands beside haruno matches its hairline. Thai names, and digits inside names (wrapped in the numeral span at 0.82em), are set in Bai Jamjuree 300; haruno's own numerals are excluded by unicode-range because they are hard to read.",
+        "section": "typography"
+      },
+      {
+        "name": "The Lettering Rule",
+        "body": "Tracked uppercase lettering is for facts and controls only: cell labels, buttons, navigation, map text. It never sits above a heading as decoration, and Thai lettering drops the tracking (0.01 to 0.02em) and steps up one size instead.",
+        "section": "typography"
+      },
+      {
+        "name": "The Ground Line Rule",
+        "body": "Everything above stands on the ground line: a 3px ink rule over a 22px band of clay hatch at 135 degrees, bled to the sheet edge. One per sheet top, directly under the plate, with the title block beneath it.",
+        "section": "layout"
+      },
+      {
+        "name": "The Re-compose Rule",
+        "body": "Narrow sheets re-compose; nothing just shrinks. Below 820px the order becomes plate, ground line, title block, map, so Directions stays in the first viewport.",
+        "section": "layout"
+      },
+      {
+        "name": "The Overlap Rule",
+        "body": "Depth is overlap and nothing else. A thing in front is a paper-filled, ink-ruled shape sitting on what is behind it. No box-shadow, no blur, no translucency.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Whole Plate Rule",
+        "body": "A photograph is shown whole, at its own proportions, with a ruled caption beneath. The section-cut plate is the single exception, where two photographs share one frame and are cropped to it.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Crossed Rectangle Rule",
+        "body": "A missing photograph or a block not yet supplied is shown one way only: an ink-ruled rectangle crossed corner to corner, with a plain paper-backed statement of what is to come. Never a grey box, a stock image or a blurred stand-in.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "**Do** build every surface from the three materials only: paper ground, ink line, clay fill, all taken from the tokens.",
+      "**Do** hold facts (hours, phone, address, area) in ruled title-block cells with a small tracked label above each value.",
+      "**Do** give Directions the clay fill, and only Directions; every other action is the paper button that inverts to ink on hover.",
+      "**Do** show photographs whole at their own proportions, with a 1px-ruled caption and the photographer's credit.",
+      "**Do** mark anything not yet supplied with the crossed rectangle and a plain statement, and give an unavailable action a dashed border.",
+      "**Do** write every visible string as a Thai and English pair, and set Thai display text in Bai Jamjuree 300 at the reduced sizes the build uses (about 0.8 to 0.86 of the Latin size, line-height 1.3 to 1.4).",
+      "**Do** wrap digits inside a haruno-set name in the numeral span so they fall to Bai Jamjuree 300.",
+      "**Do** keep controls at least 2.5rem tall (3rem for buttons) and keep the 2px ink focus outline with its 3px offset.",
+      "**Do** word controls for a café visitor: Directions, See this branch, Drag the cut.",
+      "**Do** honour reduced motion: the cut does not sweep, leaders do not draw, scrolling does not glide."
+    ],
+    "donts": [
+      "**Don't** add a shadow, a blur, a translucent layer or a colour blend. The hatch and the crossed rectangle are hard-edged line patterns, not gradients, and they are the only patterned fills.",
+      "**Don't** round a corner. The only curves are full circles a drawing would use: section marks, map points, the open-now dot.",
+      "**Don't** give clay a fourth job, and don't introduce a second accent colour.",
+      "**Don't** crop a photograph to a card ratio or lay text over it. The section-cut plate and the square drink thumbnails are the only cropped frames.",
+      "**Don't** set numerals in haruno, and don't set Thai in a regular or bold weight beside it.",
+      "**Don't** track Thai lettering or force it to uppercase rhythm; it takes 0.01 to 0.02em and the next size up.",
+      "**Don't** stand in for missing material with a stock photograph, a grey placeholder or invented copy.",
+      "**Don't** fade things up, float them, or animate on scroll. Lines draw once; plates wipe along the cut.",
+      "**Don't** ship the \"To confirm\" review notes; they are for the owner's review and leave before launch.",
+      "**Don't** use drawing-office jargon in anything a visitor reads or taps."
+    ]
+  }
+}

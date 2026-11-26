@@ -7,11 +7,23 @@
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  let current = null;
+  function paintAlts() {
+    const b = bySlug[current], f = $('.plate__frame'); if (!b || !b.outside || !f) return;
+    const th = root.dataset.lang === 'th';
+    $('.plate__out', f).alt = th ? b.outsideAltTh : b.outsideAltEn; $('.plate__in', f).alt = th ? b.insideAltTh : b.insideAltEn;
+  }
+
   /* Language: both are in the page; remember the choice where storage allows. */
   const setLang = lang => {
     root.dataset.lang = lang; root.lang = lang;
     $$('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.set === lang)));
     try { localStorage.setItem('harudot-lang', lang); } catch (e) { /* private mode: the page still works */ }
+    const th = lang === 'th';
+    $$('.map .pt').forEach(p => { const b = bySlug[p.dataset.branch]; if (b) p.setAttribute('aria-label', th ? `ฮารุดอท ${b.th}` : `Harudot ${b.en}`); });
+    const r = $('.plate__frame input[type="range"]');
+    if (r) r.setAttribute('aria-label', th ? 'เส้นตัด เลื่อนไปทางซ้ายเพื่อดูภายในมากขึ้น เลื่อนไปทางขวาเพื่อดูภายนอกมากขึ้น' : 'Section cut. Slide left to see more of the inside, right to see more of the outside.');
+    paintAlts();
     paintHours();
   };
   $$('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.set)));
@@ -55,18 +67,30 @@
     };
     requestAnimationFrame(step);
   };
-  if (range) range.addEventListener('input', () => setCut(Number(range.value)));
+  if (range) {
+    range.addEventListener('input', () => setCut(Number(range.value)));
+    /* The fine step is for a smooth drag; from the keyboard each press has to move the cut visibly. */
+    range.addEventListener('keydown', e => {
+      const v = Number(range.value), big = e.shiftKey ? 10 : 2;
+      const to = { ArrowLeft: v - big, ArrowDown: v - big, ArrowRight: v + big, ArrowUp: v + big, PageDown: v - 10, PageUp: v + 10, Home: 0, End: 100 }[e.key];
+      if (to === undefined) return;
+      e.preventDefault(); range.value = Math.max(0, Math.min(100, to)); setCut(Number(range.value));
+    });
+  }
 
   /* Picking a branch: map points, index rows and the title block all follow one selection. */
   const picker = $('[data-picker]');
   const img = (n, alt) => ({ src: `assets/img/chonburi/${n}-1280.webp`, srcset: `assets/img/chonburi/${n}-720.webp 720w, assets/img/chonburi/${n}-1280.webp 1280w, assets/img/chonburi/${n}-2000.webp 2000w`, alt });
+  const nm = s => s.replace(/\d+/g, '<span class="num">$&</span>');
   function select(slug, animate) {
     const b = bySlug[slug]; if (!b) return;
     $$('.map .pt').forEach(p => p.setAttribute('aria-pressed', String(p.dataset.branch === slug)));
     $$('.index li').forEach(li => li.setAttribute('aria-current', String(li.dataset.branch === slug)));
     if (!picker) return;
+    current = slug;
     const th = n => $(`[data-f="${n}"]`, picker);
-    th('name-en').textContent = b.en; th('name-th').textContent = b.th;
+    th('name-en').innerHTML = nm(b.en.toLowerCase()); th('name-th').innerHTML = nm(b.th);
+    th('void-en').innerHTML = nm(b.en.toLowerCase()); th('void-th').innerHTML = nm(b.th);
     th('full-en').textContent = `Harudot ${b.en} by Nana Coffee Roasters`;
     th('full-th').textContent = `ฮารุดอท ${b.th} บาย นานา คอฟฟี่ โรสเตอร์`;
     th('area-en').textContent = b.areaEn; th('area-th').textContent = b.areaTh;
@@ -82,9 +106,11 @@
     if (b.outside) {
       Object.assign($('.plate__out', frame), img(b.outside, b.outsideAltEn));
       Object.assign($('.plate__in', frame), img(b.inside, b.insideAltEn));
+      paintAlts();
       if (animate) sweep(0, 58, 700);
     }
-    $$('[data-f="credit"]', plate).forEach(el => { el.hidden = !b.outside; });
+    /* Keep the credit line's space when there is nothing to credit, so the block below does not jump. */
+    $$('[data-f="credit"]', plate).forEach(el => { el.style.visibility = b.outside ? '' : 'hidden'; });
     paintHours();
     if (animate) history.replaceState(null, '', '#' + slug);
   }

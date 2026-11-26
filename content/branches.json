@@ -4,7 +4,7 @@
     {"n": "01", "slug": "chonburi", "en": "Chonburi", "th": "ชลบุรี", "areaEn": "Samet, Chon Buri", "areaTh": "เสม็ด ชลบุรี",
      "addressEn": "Soi Nartmontasevee 30/10, Samet, Chon Buri District, Chon Buri 20000", "addressTh": "ซอยนารถมนตเสวี 30/10 ตำบลเสม็ด อำเภอเมืองชลบุรี ชลบุรี 20000",
      "phone": "+66 62 415 4793", "open": "07:00", "close": "18:00", "lat": 13.3382709, "lng": 100.9653611, "maps": "https://maps.app.goo.gl/tfMDVUywMt3NgQyj7", "sheet": "chonburi.html",
-     "outside": "069", "inside": "044", "outsideAltEn": "Harudot Chonburi from the road: three black timber gables, each opening lined in pine", "insideAltEn": "The coffee bar under a curved pine ceiling"},
+     "outside": "069", "inside": "044", "outsideAltEn": "Harudot Chonburi from the road: three black timber gables, each opening lined in pine", "insideAltEn": "The coffee bar under a curved pine ceiling", "outsideAltTh": "ฮารุดอท ชลบุรี มองจากถนน จั่วไม้สีดำสามหลัง ช่องเปิดกรุด้วยไม้สน", "insideAltTh": "บาร์กาแฟใต้เพดานไม้สนโค้ง"},
     {"n": "02", "slug": "khao-yai", "en": "Khao Yai", "th": "เขาใหญ่", "areaEn": "Pak Chong, Nakhon Ratchasima", "areaTh": "ปากช่อง นครราชสีมา",
      "addressEn": "9 Nong Chok, Pong Ta Long, Pak Chong District, Nakhon Ratchasima 30130", "addressTh": "9 หนองจอก ตำบลโป่งตาลอง อำเภอปากช่อง นครราชสีมา 30130",
      "phone": "+66 92 914 6296", "open": "09:00", "close": "17:30", "lat": 14.5311616, "lng": 101.5211561, "maps": "https://maps.app.goo.gl/jqvHyqru8TGtiHhE7"},

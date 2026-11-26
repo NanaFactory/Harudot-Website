@@ -5,7 +5,7 @@ Run from the repository root:  python3 tools/build-prototype.py
 The two pages share a masthead, a foot and the branch map, so they are assembled here
 rather than kept in step by hand. The output is plain HTML with no build step of its own.
 """
-import json, os, glob, html, sys
+import json, os, glob, html, sys, re
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -18,6 +18,19 @@ CREDIT = 'DOF Sky | Ground'
 def t(en, th, tag='span', cls=''):
     c = f' class="{cls}"' if cls else ''
     return f'<{tag}{c} data-l="en" lang="en">{en}</{tag}><{tag}{c} data-l="th" lang="th">{th}</{tag}>'
+
+
+def nm(text):
+    """haruno's numerals are left out of the web font, so digits in names are marked for the light text face."""
+    return re.sub(r'\d+', lambda m: f'<span class="num">{m.group(0)}</span>', text)
+
+
+def void(en, th, name=''):
+    return f'<div class="void"><div>{name}<p>{t(en, th)}</p></div></div>'
+
+
+def check(en, th):
+    return f'<p class="check"><span class="chip">{t("To confirm", "รอยืนยัน")}</span><span>{t(en, th)}</span></p>'
 
 
 def pic(n, alt, sizes='100vw', eager=False, cls=''):
@@ -112,14 +125,15 @@ def home():
     b = BY['chonburi']
     rows = ''
     for x in B:
-        sheet = f'<a class="btn" href="{x["sheet"]}">{t("Open sheet", "ดูสาขานี้")}{ARROW}</a>' if x.get('sheet') else ''
+        sheet = f'<a class="btn" href="{x["sheet"]}">{t("See this branch", "ดูสาขานี้")}{ARROW}</a>' if x.get('sheet') else ''
         rows += f'''<li data-branch="{x['slug']}"><div class="row">
       <span class="row__n">{x['n']}</span>
-      <button type="button" class="row__name" data-branch="{x['slug']}">{t(x['en'].lower(), x['th'])}</button>
+      <button type="button" class="row__name" data-branch="{x['slug']}">{t(nm(x['en'].lower()), nm(x['th']))}</button>
       <p class="row__meta">{t(x['areaEn'], x['areaTh'])}</p>
       <p class="row__meta"><span data-hours="{x['slug']}">{x['open']} to {x['close']}</span><br><span class="state" data-state="{x['slug']}"><i></i><span></span></span></p>
-      <div class="row__acts">{sheet}<a class="btn btn--fill" href="{x['maps']}" target="_blank" rel="noopener">{t('Directions', 'เส้นทาง')}{PIN}</a></div>
+      <div class="row__acts">{sheet}<a class="btn btn--dir" href="{x['maps']}" target="_blank" rel="noopener">{t('Directions', 'เส้นทาง')}{PIN}</a></div>
     </div></li>'''
+    third = '(max-width: 820px) 100vw, 33vw'
     return head('Harudot by Nana Coffee Roasters', 'Seven Harudot cafés from Bangkok to Chonburi and Khao Yai. Pick a branch on the map, see it, and get directions.') + f'''
 <h1 class="vh">Harudot by Nana Coffee Roasters</h1>
 
@@ -129,7 +143,7 @@ def home():
       <div class="plate__frame">
         {pic(b['inside'], b['insideAltEn'], '(max-width: 820px) 100vw, 62vw', True, 'plate__in')}
         {pic(b['outside'], b['outsideAltEn'], '(max-width: 820px) 100vw, 62vw', True, 'plate__out')}
-        <div class="void"><p>{t('Photographs to come', 'ภาพถ่ายกำลังตามมา')}</p></div>
+        <div class="void"><div><span class="name"><span data-f="void-en" data-l="en" lang="en">{b['en'].lower()}</span><span data-f="void-th" data-l="th" lang="th">{b['th']}</span></span><p>{t('Photographs to come', 'ภาพถ่ายกำลังตามมา')}</p></div></div>
         <div class="cutline" aria-hidden="true"><span class="mark">A</span><span class="mark">A</span><span class="grip">{TRI_L}{t('Drag the cut', 'ลากเส้นตัด')}{TRI_R}</span></div>
         <input type="range" min="0" max="100" step="0.1" value="58" aria-label="Section cut. Slide left to see more of the inside, right to see more of the outside.">
         <span class="tag tag--out">{t('Outside', 'ภายนอก')}</span><span class="tag tag--in">{t('Inside', 'ภายใน')}</span>
@@ -143,25 +157,32 @@ def home():
   </div>
   <div class="ground ground--bleed"></div>
   <div class="tb tb--pick" aria-live="polite">
-    <div><span class="lbl">{t('Branch', 'สาขา')}</span><p class="val name"><span data-f="name-en" data-l="en" lang="en">{b['en']}</span><span data-f="name-th" data-l="th" lang="th">{b['th']}</span></p>
+    <div><span class="lbl">{t('Branch', 'สาขา')}</span><p class="val name"><span data-f="name-en" data-l="en" lang="en">{b['en'].lower()}</span><span data-f="name-th" data-l="th" lang="th">{b['th']}</span></p>
       <p class="vh"><span data-f="full-en" data-l="en" lang="en"></span><span data-f="full-th" data-l="th" lang="th"></span></p></div>
     <div><span class="lbl">{t('Today', 'วันนี้')}</span><p class="val"><span data-f="hours" data-hours="chonburi">{b['open']} to {b['close']}</span><br><span class="state" data-f="state" data-state="chonburi"><i></i><span></span></span></p></div>
     <div><span class="lbl">{t('Where', 'ที่ตั้ง')}</span><p class="val"><span data-f="area-en" data-l="en" lang="en">{b['areaEn']}</span><span data-f="area-th" data-l="th" lang="th">{b['areaTh']}</span></p></div>
     <div><span class="lbl">{t('Call', 'โทร')}</span><p class="val"><a data-f="phone" href="tel:{b['phone'].replace(' ', '')}">{b['phone'].replace('+66 ', '0')}</a></p></div>
     <div class="tb__act"><a class="btn btn--fill" data-f="maps" href="{b['maps']}" target="_blank" rel="noopener">{t('Directions', 'เส้นทาง')}{PIN}</a></div>
-    <div class="tb__act"><a class="btn" data-f="sheet" href="chonburi.html"><span data-sheet-label="yes">{t('Open sheet', 'ดูสาขานี้')}</span><span data-sheet-label="no" hidden>{t('Sheet to come', 'หน้าสาขากำลังตามมา')}</span>{ARROW}</a></div>
+    <div class="tb__act"><a class="btn" data-f="sheet" href="chonburi.html"><span data-sheet-label="yes">{t('See this branch', 'ดูสาขานี้')}</span><span data-sheet-label="no" hidden>{t('Page coming soon', 'หน้าสาขากำลังตามมา')}</span>{ARROW}</a></div>
   </div>
 </section>
 
 <section class="sec" id="branches">
-  <div class="sec__head"><h2>{t('all branches', 'สาขาทั้งหมด')}</h2><p>{t('Tap a name to see it on the map. Hours are for today, Bangkok time.', 'แตะชื่อสาขาเพื่อดูบนแผนที่ เวลาที่แสดงคือเวลาทำการวันนี้')}</p></div>
+  <div class="sec__head"><h2>{t('all branches', 'สาขาทั้งหมด')}</h2><p>{t('Tap a name to see it on the map.', 'แตะชื่อสาขาเพื่อดูบนแผนที่')}</p></div>
   <ol class="index">{rows}</ol>
+  {check('Hours are Thursday\'s, as listed on Google Maps on 26 November 2026. The other six days are not yet known, so the page shows these hours every day.', 'เวลาทำการเป็นของวันพฤหัสบดี ตามที่แสดงบน Google Maps เมื่อวันที่ 26 พฤศจิกายน 2569 ยังไม่ทราบเวลาของอีกหกวัน หน้านี้จึงแสดงเวลาเดียวกันทุกวัน')}
 </section>
 
 <figure class="fig bleed sec">
   {pic('025', 'Looking straight up from the court: the pine roof opens in a curved void and a bottle tree grows through it into blue sky', '100vw')}
-  <figcaption>{t('Harudot Chonburi. The roof is pulled apart around a bottle tree.', 'ฮารุดอท ชลบุรี หลังคาแยกออกเพื่อเปิดทางให้ต้นไม้เติบโตขึ้นสู่ท้องฟ้า')}<a href="chonburi.html">{t('Open the Chonburi sheet', 'ดูสาขาชลบุรี')}</a></figcaption>
+  <figcaption>{t('Harudot Chonburi. The roof is pulled apart around a bottle tree.', 'ฮารุดอท ชลบุรี หลังคาแยกออกเพื่อเปิดทางให้ต้นไม้เติบโตขึ้นสู่ท้องฟ้า')}<a href="chonburi.html">{t('See the Chonburi branch', 'ดูสาขาชลบุรี')}</a></figcaption>
 </figure>
+
+<div class="plates trio">
+  {fig('005', 'One gable, lined in pine, between black timber walls.', 'จั่วหนึ่งหลังกรุด้วยไม้สน ระหว่างผนังไม้สีดำ', 's4', third)}
+  {fig('053', 'A tree in the middle of the room.', 'ต้นไม้กลางห้อง', 's4', third)}
+  {fig('049', 'One counter runs around the room.', 'เคาน์เตอร์เส้นเดียวทอดยาวรอบห้อง', 's4', third)}
+</div>
 
 <section class="sec" id="promotions">
   <div class="sec__head"><h2>{t('promotions', 'โปรโมชัน')}</h2><p>{t('Nothing has been entered yet. This card shows the layout only.', 'ยังไม่มีโปรโมชันในระบบ การ์ดนี้แสดงรูปแบบเท่านั้น')}</p></div>
@@ -177,6 +198,7 @@ def home():
       <a class="btn" href="https://nanacoffeeroasters.com" target="_blank" rel="noopener">Nana Coffee Roasters{ARROW}</a>
     </div>
   </div>
+  {check('The meaning of the name is taken from IDIN Architects\' project page.', 'ความหมายของชื่อนำมาจากหน้าโครงการของ IDIN Architects')}
 </section>
 ''' + foot()
 
@@ -208,17 +230,27 @@ def chonburi():
   <div><dt class="lbl">{t('Completed', 'แล้วเสร็จ')}</dt><dd>2023</dd></div>
   <div><dt class="lbl">{t('Usable area', 'พื้นที่ใช้สอย')}</dt><dd>{t('475 sq m', '475 ตร.ม.')}</dd></div>
 </dl>
+{check('Architect, year, area, photographer and the description of the building come from IDIN Architects\' project page. Hours are Thursday\'s, from Google Maps.', 'ชื่อสถาปนิก ปีที่แล้วเสร็จ พื้นที่ ชื่อช่างภาพ และคำบรรยายอาคาร นำมาจากหน้าโครงการของ IDIN Architects เวลาทำการเป็นของวันพฤหัสบดีจาก Google Maps')}
 
 <section class="sec" id="plates">
-  <div class="sec__head"><h2>{t('plates', 'ภาพถ่าย')}</h2><p>{t('Through the building in the order you meet it: approach, threshold, heart, detail, seat, bar.', 'เดินชมอาคารตามลำดับที่คุณจะได้พบ ตั้งแต่ทางเข้า ธรณีประตู ใจกลางอาคาร รายละเอียด ที่นั่ง จนถึงบาร์')}</p></div>
+  <div class="sec__head"><h2>{t('photographs', 'ภาพถ่าย')}</h2><p>{t('Through the building in the order you meet it: the approach, the black walls, the tree at its heart, the places to sit, the bar, and the evening.', 'เดินชมอาคารตามลำดับที่คุณจะได้พบ ตั้งแต่ทางเข้า ผนังสีดำ ต้นไม้ใจกลางอาคาร ที่นั่ง บาร์ จนถึงยามเย็น')}</p></div>
   <div class="plates">
     {fig('082', 'Approach. The three gables at dusk, lit from inside.', 'ทางเข้า จั่วสามหลังยามพลบค่ำ สว่างจากแสงภายใน', 's7', '(max-width: 820px) 100vw, 58vw')}
     {fig('016', 'Threshold. The edge of a gable, with the olive tree beside it.', 'ธรณีประตู ขอบจั่วและต้นมะกอกที่อยู่เคียงกัน', 's5', '(max-width: 820px) 100vw, 42vw')}
+    {fig('012', 'Walls. Black timber rises and folds where the gables are pulled apart.', 'ผนัง ไม้สีดำโค้งตัวขึ้นตรงจุดที่จั่วแยกออกจากกัน', 's5', '(max-width: 820px) 100vw, 42vw')}
+    {fig('005', 'Walls. One gable, lined in pine.', 'ผนัง จั่วหนึ่งหลังกรุด้วยไม้สน', 's7', '(max-width: 820px) 100vw, 58vw')}
+    {fig('025', 'Heart. Looking straight up through the opening at the bottle tree.', 'ใจกลางอาคาร มองขึ้นไปผ่านช่องเปิดสู่ต้นไม้และท้องฟ้า', '', '100vw')}
     {fig('053', 'Heart. A tree stands in the middle of the room, under an arch of pine.', 'ใจกลางอาคาร ต้นไม้ยืนอยู่กลางห้องใต้ซุ้มโค้งไม้สน', 's8', '(max-width: 820px) 100vw, 66vw')}
     {fig('063', 'Detail. Words set into the terrazzo floor.', 'รายละเอียด ถ้อยคำที่ฝังอยู่ในพื้นหินขัด', 's4', '(max-width: 820px) 100vw, 34vw')}
+    {fig('023', 'Court. The tree stands in a ring of seats, open to the sky.', 'ลานกลาง ต้นไม้ยืนอยู่กลางวงที่นั่ง เปิดโล่งสู่ท้องฟ้า', 's6', half)}
+    {fig('072', 'Court. The same place in the evening.', 'ลานกลาง มุมเดียวกันในยามเย็น', 's6', half)}
     {fig('049', 'Seat. One counter runs around the room like a ribbon.', 'ที่นั่ง เคาน์เตอร์เส้นเดียวทอดยาวรอบห้องดั่งริบบิ้น', 's6', half)}
     {fig('040', 'Seat. The lounge, looking out through two arches.', 'ที่นั่ง มุมเลานจ์ที่มองออกไปผ่านซุ้มโค้งสองช่อง', 's6', half)}
-    {fig('044', 'Bar. Coffee is made under a soft, glowing ceiling.', 'บาร์ กาแฟถูกชงใต้ฝ้าเพดานที่เรืองแสงนุ่มนวล', 's8 from3', '(max-width: 820px) 100vw, 66vw')}
+    {fig('060', 'Seat. Light comes down through openings in the ceiling.', 'ที่นั่ง แสงส่องลงมาผ่านช่องเปิดบนเพดาน', 's8', '(max-width: 820px) 100vw, 66vw')}
+    {fig('039', 'Detail. Room names are lettered onto the pine.', 'รายละเอียด ชื่อห้องเขียนลงบนผนังไม้สน', 's4', '(max-width: 820px) 100vw, 34vw')}
+    {fig('044', 'Bar. Coffee is made under a soft, glowing ceiling.', 'บาร์ กาแฟถูกชงใต้ฝ้าเพดานที่เรืองแสงนุ่มนวล', '', '100vw')}
+    {fig('043', 'Bar. From the far end of the counter.', 'บาร์ มองจากปลายเคาน์เตอร์', 's6', half)}
+    {fig('077', 'Evening. Light runs along the foot of the black walls.', 'ยามเย็น แสงไฟทอดยาวตามแนวฐานผนังสีดำ', 's6', half)}
   </div>
 </section>
 
@@ -234,8 +266,9 @@ def chonburi():
 </section>
 
 <section class="sec" id="menu">
-  <div class="sec__head"><h2>{t('from the menu', 'จากเมนู')}</h2><p>{t('Six drinks. The full menu pages will sit here once they are supplied.', 'เครื่องดื่มหกรายการ หน้าเมนูฉบับเต็มจะแสดงที่นี่เมื่อได้รับไฟล์')}</p></div>
+  <div class="sec__head"><h2>{t('from the menu', 'จากเมนู')}</h2><p>{t('Six drinks. The full menu pages will sit below once they are supplied.', 'เครื่องดื่มหกรายการ หน้าเมนูฉบับเต็มจะแสดงด้านล่างเมื่อได้รับไฟล์')}</p></div>
   <ul class="menu">{menu}</ul>
+  {void('Menu pages to come', 'หน้าเมนูกำลังตามมา')}
 </section>
 
 <section class="sec" id="promotions">
@@ -250,6 +283,7 @@ def chonburi():
       {t(b['addressEn'], b['addressTh'], 'address')}
       <div class="acts"><a class="btn btn--fill" href="{b['maps']}" target="_blank" rel="noopener">{t('Directions', 'เส้นทาง')}{PIN}</a><a class="btn" href="tel:{b['phone'].replace(' ', '')}">{t('Call', 'โทร')} {b['phone'].replace('+66 ', '0')}</a></div>
       <dl><dt class="lbl">{t('Today', 'วันนี้')}</dt><dd><span data-hours="chonburi">{b['open']} to {b['close']}</span>, <span class="state" data-state="chonburi"><i></i><span></span></span></dd></dl>
+      {void('Hours for the whole week to come', 'เวลาทำการทั้งสัปดาห์กำลังตามมา')}
     </div>
     <div>{MAPS}</div>
   </div>
@@ -290,7 +324,7 @@ if '--share' in sys.argv:
 
 open(os.path.join(P, 'index.html'), 'w', encoding='utf-8').write(home())
 open(os.path.join(P, 'chonburi.html'), 'w', encoding='utf-8').write(chonburi())
-keep = ('n', 'slug', 'en', 'th', 'areaEn', 'areaTh', 'phone', 'open', 'close', 'maps', 'sheet', 'outside', 'inside', 'outsideAltEn', 'insideAltEn')
+keep = ('n', 'slug', 'en', 'th', 'areaEn', 'areaTh', 'phone', 'open', 'close', 'maps', 'sheet', 'outside', 'inside', 'outsideAltEn', 'insideAltEn', 'outsideAltTh', 'insideAltTh')
 open(os.path.join(P, 'assets/js/branches.js'), 'w', encoding='utf-8').write(
     'window.HARUDOT = ' + json.dumps({'branches': [{k: b[k] for k in keep if k in b} for b in B]}, ensure_ascii=False) + ';\n')
 print('built', [os.path.getsize(os.path.join(P, f)) for f in ('index.html', 'chonburi.html')])

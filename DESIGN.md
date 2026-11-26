@@ -121,7 +121,7 @@ The site is the drawing set of the cafés. Each branch is a sheet, a photograph 
 
 The system is quiet so the buildings are not. Photographs carry all the colour and all the warmth; the interface around them is line, lettering and paper. Density is that of a well-kept sheet: generous margins, facts packed tight inside their cells, long clear runs between sections. Depth comes from overlap only. There are no shadows, no colour blends, no softened corners and no glass.
 
-Two languages share every page with equal weight. haruno, the brand's own monoline face, letters the names; Bai Jamjuree sets everything else in Thai and English, in its light weight wherever it has to stand beside haruno's hairline. Controls are worded for a café visitor (Directions, See this branch, Drag the cut), never in drawing-office terms.
+Two languages share every page with equal weight. haruno, the brand's own monoline face, letters the names; Bai Jamjuree sets everything else in Thai and English, in its light weight wherever it has to stand beside haruno's hairline. Controls are worded for a café visitor (Directions, View branch, Drag the cut), never in drawing-office terms.
 
 **Key Characteristics:**
 - Paper, one ink, one fill: cool white ground, black line, clay pink.
@@ -181,7 +181,7 @@ One sheet, 1520px at its widest, centred, with a fluid sheet margin (`margin`) a
 
 The sheet top is a two-column composition: the plate takes the remaining width and the map picker a third (never under 340px), stretched to equal height. Beneath both runs the ground line, then the title block. Branch-sheet photographs sit on a 12-column grid in spans of 4, 5, 6, 7, 8 and 12, aligned to their bottom edges with a large row gap (clamp(40px, 6vw, 88px)), so the page reads as a sequence of differently sized plates rather than a uniform gallery. Paired text blocks (about, story, location) use two unequal columns with a wide column gap (clamp(32px, 6vw, 96px)).
 
-Three breakpoints, each a re-composition: at 1100px title blocks fall to two columns and list rows drop their actions to a second line; at 820px the sheet top stacks and text pairs become one column; at 600px the navigation takes its own full-width line under the logo, the map swaps to a drawing made for the narrow sheet, and paired buttons share the row equally.
+Three breakpoints, each a re-composition: at 1100px title blocks fall to two columns and list rows drop their actions to a second line; at 820px the sheet top stacks and text pairs become one column; at 600px the navigation takes its own full-width line under the logo, the map swaps to a drawing made for the narrow sheet, and a list row's actions span the full row width and share it equally.
 
 ### Named Rules
 **The Ground Line Rule.** Everything above stands on the ground line: a 3px ink rule over a 22px band of clay hatch at 135 degrees, bled to the sheet edge. One per sheet top, directly under the plate, with the title block beneath it.
@@ -210,7 +210,7 @@ Two hard-edged line patterns exist and no others: the 135 degree hatch (1.5px li
 
 ### Buttons
 Plain, ruled, and certain: a lettered rectangle that inverts.
-- **Shape:** square (0 radius), 1px ink border, at least 3rem tall, padding 0.7rem 1.15rem, with an optional 1rem line icon after the lettering. Inside list rows: 2.75rem tall.
+- **Shape:** square (0 radius), 1px ink border, at least 3rem tall, padding 0.7rem 1.15rem, with an optional 1rem line icon after the lettering. The lettering never wraps. Inside list rows: 2.75rem tall.
 - **Default:** paper fill, ink lettering.
 - **Primary:** clay fill, ink lettering. Directions only. In the list, Directions takes the clay fill only on the selected branch's row.
 - **Hover / Focus:** fill becomes ink and lettering paper over 0.18s on the system ease (cubic-bezier(0.16, 1, 0.3, 1)); pressing moves it down 1px. Focus is a 2px ink outline offset 3px, as on every focusable thing.
@@ -224,7 +224,7 @@ Two joined square cells in a 1px ink frame, each at least 3rem by 2.5rem. The la
 Uppercase lettering links (0.8125rem, 500, 0.1em) in a masthead closed by a fine rule: logo left (168px), links centre, language switch right. Hover and the current page are a 2px ink underline at the bottom of the link. At 600px the links spread across their own line below the logo.
 
 ### Title block
-The container for facts, in place of a card. A 1px ink frame divided into ruled cells (padding 0.8rem 1rem); each cell holds a Label above a Value. Action cells have no padding and are filled by their button. Used for the selected branch (name, today's hours and state, area, phone, Directions, See this branch), for a branch's facts (four columns), and for the foot of every sheet.
+The container for facts, in place of a card. A 1px ink frame divided into ruled cells (padding 0.8rem 1rem); each cell holds a Label above a Value. A branch name in a cell is set at weight 300, so Thai names and numerals there match haruno. Action cells have no padding and are filled by their button. Used for the selected branch (name, today's hours and state, area, phone, Directions, View branch), for a branch's facts (four columns), and for the foot of every sheet.
 
 ### Open-now state
 A 0.6rem ink-ringed circle beside a plain sentence ("Open now, closes 18:00"). The circle is filled clay when open and left empty when closed; the sentence always carries the meaning.
@@ -239,7 +239,7 @@ A whole photograph at full column width with a caption below it on a fine rule (
 Two photographs of the selected branch, outside and inside, share one frame and meet at a 2px dashed ink line that overhangs the frame by 20px at each end and carries a circled A mark at top and bottom. A clay, ink-ruled handle sits on the line at mid-height ("Drag the cut", arrows either side; arrows only at 600px). An invisible range input covers the frame, so drag, touch and arrow keys all move the cut. Paper-backed tags name each side (Outside, Inside) at the bottom corners. Selecting a branch sweeps the cut from 0 to its rest position at 58% over 700ms; with reduced motion it does not move. If the branch has no photographs the frame becomes a crossed rectangle carrying the branch name.
 
 ### Map picker
-A paper drawing in a 1px ink frame: coastline in fine line, sea as faint horizontal ruling, a point per branch with a numbered, lettered name on a leader line, a scale bar, a north arrow and a key plan of the country. Each point is a button. Hover washes its label in Clay Wash; the selected branch gets a clay label, a larger clay point ringed in ink, bolder lettering and a heavier leader. Leaders draw once on load (0.9s, system ease). A separate drawing serves sheets under 600px.
+A paper drawing in a 1px ink frame: coastline in fine line, sea as faint horizontal ruling, a point per branch with a numbered, lettered name on a leader line, a scale bar, a north arrow and a key plan of the country. Each point is a button. Hover washes its label in Clay Wash; the selected branch gets a clay label, a larger clay point ringed in ink, bolder lettering and a heavier leader. Each label has one tap row and one leader per language, sized from that language's text. Leaders draw once on load (0.9s, system ease, no delay); the drawn line is the resting state, so a leader is never left invisible. A separate drawing serves sheets under 600px.
 
 ### Crossed rectangle
 The stand-in for anything not yet supplied: 1px ink frame, two 1px diagonals, at least 12rem tall, with a paper-backed, ink-ruled statement in Control lettering at its centre ("Photographs to come"). In the section-cut frame it also carries the branch name in haruno.
@@ -267,7 +267,7 @@ Every visible string is written twice, as a Thai and an English element carrying
 - **Do** write every visible string as a Thai and English pair, and set Thai display text in Bai Jamjuree 300 at the reduced sizes the build uses (about 0.8 to 0.86 of the Latin size, line-height 1.3 to 1.4).
 - **Do** wrap digits inside a haruno-set name in the numeral span so they fall to Bai Jamjuree 300.
 - **Do** keep controls at least 2.5rem tall (3rem for buttons) and keep the 2px ink focus outline with its 3px offset.
-- **Do** word controls for a café visitor: Directions, See this branch, Drag the cut.
+- **Do** word controls for a café visitor: Directions, View branch, Drag the cut.
 - **Do** honour reduced motion: the cut does not sweep, leaders do not draw, scrolling does not glide.
 
 ### Don't:

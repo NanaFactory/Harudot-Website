@@ -10,11 +10,11 @@ web
 
 ## Stack
 
-Owner's starting position **(confirmed)**: WordPress, because the domain harudot.com is already with SiteGround; open to an alternative if it keeps cost low.
+WordPress, hosted on WordPress.com's Personal plan **(confirmed 2026-11-26)**. The domain harudot.com stays registered at SiteGround and is connected to the WordPress.com site by changing its name servers. A small theme written for this site is held in this repository; free plugins only.
 
-Recommended, awaiting the owner's go-ahead: WordPress on the existing SiteGround plan, with a small custom theme written for this site (no page-builder plugin, no paid theme), free plugins only. Reason: staff who are not developers change menus and promotions often, in two languages, and need an admin screen; SiteGround already includes WordPress hosting, backups, SSL and caching, so the added cost is zero.
+Checked on WordPress.com's own pages on 2026-11-26: the Personal plan includes connecting a domain registered elsewhere, plugin installation, theme upload, SFTP and GitHub deployments, with 6 GB of storage. It does not include a staging site, one-click restore or Google Analytics. Re-check these before relying on them later; plan contents change.
 
-Open: which SiteGround plan the account is on, and whether harudot.com has hosting attached or only the domain registration. On 2026-11-26 the domain did not resolve at all (no DNS record), so nothing is live there today.
+On 2026-11-26 harudot.com had no DNS record, so nothing is live there.
 
 ## Users
 
@@ -52,13 +52,17 @@ Seven branches at launch **(confirmed)**, and adding a branch later must be easy
 
 Staff who are not developers update menus and promotions often (monthly or more) **(confirmed)**. Menus are uploaded as designed images or PDF per branch, not typed item by item **(confirmed)**.
 
-Open: every branch's address, opening hours, phone, Google Maps link and parking notes; who on the team will hold the editor login.
+Google Maps links and coordinates for all seven were supplied by the owner **(confirmed)** and are tabled in `docs/website-plan.md`. The Google listings name the branches inconsistently ("Harudot Chonburi by Nana Coffee Roasters", "Harudot by Nana @Sukhumvit 22", "Harudot by Nana Makro Sathon"); the form the website should use is open.
+
+Open: every branch's address, opening hours, phone and parking notes; who on the team will hold the editor login.
 
 ## Capabilities and Constraints
 
 - Two languages, Thai and English, on every page **(confirmed)**.
 - Per branch: architectural photos, information and location, a menu, current promotions **(confirmed)**.
 - Visitor actions: get directions (Google Maps, hours, phone) and enquire about events, press and collaborations through a contact form **(confirmed)**.
+- Visitors pick a branch from a map of Thailand **(confirmed)**. All seven branches lie within about 150 km of Bangkok, so the map needs an enlarged area around Bangkok, Chonburi and Khao Yai to tell them apart.
+- Approved additions **(confirmed)**: "open now" from entered hours, start and end dates on promotions, a "coming soon" branch state, a few signature items typed as text beside the menu images, branch details marked up for search engines, and a press and awards page later.
 - Low running cost is a hard constraint **(confirmed)**: nothing that adds a monthly fee without the owner's agreement.
 - Professional photo sets exist for some branches only **(confirmed)**; the rest have casual or social-media photos for now. The site must look complete when a branch has few photos.
 

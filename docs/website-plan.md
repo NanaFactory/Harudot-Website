@@ -2,7 +2,7 @@
 
 Plan for harudot.com, the first website for Harudot by Nana Coffee Roasters. Written 2026-11-26. Product facts and their sources are in [`PRODUCT.md`](../PRODUCT.md); this file is the plan built on them. Nothing has been built yet.
 
-**Status:** everything below is settled except the visual direction (section 3), which is waiting on your choice between three sketches.
+**Status (updated 2026-11-26):** direction A is chosen, with a map of Thailand for picking a branch. Hosting is WordPress.com, Personal plan, with harudot.com staying registered at SiteGround. All recommended additions are approved. Design starts when the brand files and a first batch of photographs arrive (section 7).
 
 ## 1. What the site is for
 
@@ -17,63 +17,69 @@ So the site succeeds when:
 
 It is not a shop, not a delivery portal and not a blog.
 
-## 2. Platform: WordPress on SiteGround
+## 2. Platform: WordPress.com, Personal plan
 
-**Recommendation: WordPress, on your SiteGround account, with a small theme written specifically for Harudot.** Staff will change menus and promotions every month in Thai and English, and WordPress gives them a familiar admin screen for that at no extra cost.
+**Decided: WordPress, hosted on WordPress.com's Personal plan. The domain harudot.com stays registered at SiteGround and is connected to the WordPress.com site.**
 
-One correction to the starting assumption: WordPress itself is free, but it needs **hosting**, and a domain alone doesn't include that. Two things to check in your SiteGround account:
+Checked against WordPress.com's own pricing and plan pages on 2026-11-26:
 
-| If your SiteGround account has… | Then |
+| Question | Answer |
 |---|---|
-| A hosting plan that allows more than one website (GrowBig or GoGeek, as I understand their plans; please confirm in the account) | Add harudot.com as a new site on it. Extra cost: none. |
-| A hosting plan limited to one website, already used by another site | Either upgrade the plan or use the alternative below. |
-| Only the domain registration, no hosting | A hosting plan is needed. Check the renewal price, not the first-year offer; it is usually several times higher. |
+| Does the Personal plan allow a domain registered elsewhere? | Yes. "Connect a domain you registered elsewhere" is available on Personal and above. The domain stays at SiteGround and you keep renewing it there. |
+| Can it run a theme written for Harudot, and plugins? | Yes. Their plan page lists Personal as including plugin installation, theme file upload, SFTP and GitHub deployments. (This used to need the Business plan; it no longer does.) |
+| Price | Shown as $4 a month for the first year, billed yearly, renewing at $5 a month ($60 a year), before tax. Prices can differ by currency and country. |
+| Storage | 6 GB. Enough for seven branches if photographs are exported at web size (about 2560 px on the long edge, well under 1 MB each) rather than uploaded straight from the camera. |
 
-Today harudot.com has no DNS record at all, so nothing is live at the address and nothing will be disrupted by launching.
+What the Personal plan does not include, and what we do about it:
 
-**How it's built, and why not an off-the-shelf theme.** The reference site runs WordPress with a paid multipurpose theme and a slider plugin. That route is quick but heavy: slow on phones, and staff end up editing inside a page-builder where it is easy to break the layout. Instead:
+- **No staging copy of the site and no one-click restore** (those start at Business). The theme lives in this repository, so the code is always recoverable; content can be exported from the WordPress admin, which I'd put on a monthly reminder for staff.
+- **No Google Analytics** (starts at Premium). The plan already avoids tracking cookies; the built-in visitor stats are included.
+- **No mailbox at harudot.com.** Enquiries from the contact form are delivered to an address you already use.
 
-- a hand-written theme held in this repository, installed by uploading a zip in the WordPress admin;
-- two content types staff fill in as simple forms: **Branch** and **Promotion** (fields in section 5);
-- free plugins only, kept to a short list: a translation plugin for Thai and English, a custom-fields plugin, a contact-form plugin, and SiteGround's own speed and security plugins. Exact picks are made at build time and none carries a subscription.
+**How the domain is connected.** In WordPress.com: Domains, "Use a domain name I own", choose *connect* (not transfer). Then in SiteGround, replace the domain's name servers with `ns1.wordpress.com`, `ns2.wordpress.com` and `ns3.wordpress.com`. harudot.com has no website or email records today, so nothing existing is disturbed. When buying the plan, skip the "free domain for one year" offer; you already own the name.
 
-**Alternative if hosting turns out to cost extra:** a static site on a free host (for example Cloudflare Pages) with a free editing screen layered on top. Hosting is then free, and the site is faster and has almost nothing to maintain. The trade-off is that the staff editing screen is plainer and bilingual editing is clumsier. I'd only choose it if you'd otherwise be paying for a new hosting plan.
+**How it's built.** A hand-written theme held in this repository, deployed to WordPress.com from GitHub. Two content types staff fill in as simple forms, **Branch** and **Promotion** (fields in section 5). Free plugins only, kept short: one for Thai and English, one for the custom fields, one for the contact form.
 
 ### Running costs
 
 | Item | Cost |
 |---|---|
-| Domain harudot.com | Already owned; yearly renewal continues |
-| Hosting | Nothing extra if your current SiteGround plan allows another site; otherwise the plan price |
-| WordPress, theme, plugins | Free |
-| Maps | Free (links to Google Maps, no paid map service) |
-| Enquiry email | Free (mailbox included with SiteGround hosting) |
+| Domain harudot.com | Already owned; yearly renewal continues at SiteGround |
+| WordPress.com Personal | About $48 the first year, then about $60 a year, before tax |
+| Theme, plugins | Free |
+| Maps | Free (own drawn map; Directions links open Google Maps) |
 | Fonts | Free web fonts; Harudot's own signage font only if you hold a licence that covers websites |
 | Photographs | Whatever your photographers require for web use and credit |
 
-## 3. Visual direction: your choice needed
+## 3. Visual direction: A, "Drawn to scale", with a map picker
 
-Three sketches are in [`docs/sketches/`](sketches/). Each shows the home page on a desktop and a branch page on a phone. The photos in them are free stand-ins of other buildings, and hours and addresses are samples.
+**Chosen: direction A, and visitors pick a branch from a map of Thailand.** Sketch: [`sketches/direction-a-map.jpg`](sketches/direction-a-map.jpg). The earlier three options are kept in the same folder for reference.
 
-Whichever you choose, these stay fixed, because they are what you liked in the reference:
+The site is an architect's drawing set. Pale paper ground, black line, one clay-pink fill taken from the Khao Yai concrete. Each branch is a numbered sheet with a "title block" holding address, hours and credits.
 
-- photographs are large and shown whole, never cropped into shapes or covered with text blocks;
-- very little interface; a light page; photographer and architect credited;
-- Thai and English given equal weight.
+**Home page.** A photograph of the selected branch on one side, with a cut line you drag to pass from outside the building to inside. Beside it, the map: tap a point or a name and the photograph changes to that branch; "Open sheet" goes to its page.
 
-| | What surrounds the photos | What it needs from you | Honest risk |
-|---|---|---|---|
-| **A. Drawn to scale** ([sketch](sketches/direction-a.jpg)) | An architect's drawing set. Pale paper, black line, one clay-pink fill taken from the Khao Yai concrete. Each branch is a numbered sheet with a "title block" holding address, hours and credits, and a drawn location plan. On the home page you drag a cut line across the photo to pass from outside the building to inside. | One exterior and one interior photo per branch for the cut. Optional: a simple plan or section from the architects for the flagship cafés. | Drawing language can feel technical to someone who just wants a coffee. |
-| **B. Seven dots** ([sketch](sketches/direction-b.jpg)) | Harudot's own floor. Terrazzo ground, brass rings, one dot per branch along the foot of a full-width photo; round "inlay" buttons lead to Menu, Promotions and Directions, the way words are set into the café floors. A dot opens to reveal that branch. | Your real signage font and logo files, with a licence for web use. The lettering in the sketch is a stand-in. | The most expected answer for a brand named "dot", and dot motifs turn cute quickly. |
-| **C. Like the reference** ([sketch](sketches/direction-c.jpg)) | The architecture-studio standard, done well: full-screen slideshow, small uppercase navigation, edge-to-edge photo mosaic, plain facts table. | Nothing beyond the photos. | Looks like many architecture-studio sites, including IDIN's own, and carries the least of Harudot's character. Fastest and cheapest to build. |
+**How the map works.** All seven branches lie within about 150 km of Bangkok, and four of them sit inside a few kilometres of each other. On a map of the whole country they would be a single dot. So the map is drawn the way an architect would draw it:
 
-My view: B if you can supply the real signage font and logo, because then the site is unmistakably Harudot's; A if you can't, because it needs nothing but photographs to feel particular. C is a sound choice if speed matters most. Mixing is possible (for example C's home page with A's branch page); say so and I'll sketch it.
+- a small **key plan** of Thailand showing where we are looking;
+- an enlarged **detail plan** of the Bangkok, Chonburi and Khao Yai area with each branch at its true position (taken from your Google Maps links);
+- the four inner-Bangkok branches labelled with leader lines so their names don't collide;
+- the branch names are the tap targets as well as the points, because points that close together can't be tapped reliably on a phone;
+- on a phone, a plain list of all branches sits directly under the map.
+
+The map is drawn for the site (no paid map service, no Google Maps embed on the home page). A new branch appears on it when staff enter its coordinates. If a branch ever opens far outside this area, such as Chiang Mai or Phuket, the detail plan widens to include it.
+
+**What stays fixed:** photographs are large and shown whole; very little interface; photographer and architect credited; Thai and English given equal weight.
+
+**What it needs from you:** one exterior and one interior photograph per branch for the cut line. Optional: a simple plan or section drawing from the architects for the two flagship cafés.
+
+**Honest risk:** drawing language can feel technical to someone who just wants a coffee. The plain wording ("Pick a branch", "Directions", "Open today") is what keeps it friendly, so labels stay in everyday language and only the look borrows from drawings.
 
 ## 4. Pages
 
 | Page | What's on it |
 |---|---|
-| **Home** | Photographs lead. All seven branches reachable without scrolling far. A short line on what Harudot is. Current promotions, if any. |
+| **Home** | Photograph of the selected branch with the outside-to-inside cut line; the map of Thailand for picking a branch; a short line on what Harudot is; current promotions, if any. |
 | **Branches** | All branches at a glance: photo, area, "open now" or today's hours. Grouped as Bangkok and beyond Bangkok once that's useful. |
 | **Branch** (one per branch) | Photo sequence; address, hours, phone, parking; a Directions button that opens Google Maps; the menu; current promotions at this branch; the story of the building where there is one; architect and photographer credits. |
 | **Promotions** | Everything currently running, filterable by branch. |
@@ -83,7 +89,7 @@ My view: B if you can supply the real signage font and logo, because then the si
 
 Every page exists in Thai and English with a language switch that stays on the same page.
 
-### Recommended additions
+### Additions (all approved)
 
 - **"Open now" on every branch**, worked out from the opening hours staff enter, including one-off closures.
 - **Start and end dates on promotions**, so an expired offer disappears by itself. Stale promotions are the most common way a café site goes wrong.
@@ -107,7 +113,7 @@ Every page exists in Thai and English with a language switch that stays on the s
 
 - Name, in Thai and English
 - Status: open, temporarily closed, coming soon
-- Address, Google Maps link, phone, parking note
+- Address, Google Maps link, map coordinates, phone, parking note
 - Opening hours by weekday, plus dated exceptions
 - Photographs in order, each with a short description and credit
 - Menu images, with the date updated
@@ -139,21 +145,40 @@ Phone first: the branch page on a phone is the most-used screen. Photographs are
 
 ## 7. What I need from you
 
-In rough order of how much each one unblocks:
+1. **Brand files:** logo, the signage font (and whether its licence covers websites), brand colours, any written brand rules.
+2. **Photographs:** for each branch, at least one exterior and one interior; full sets where they exist; each photographer's permission and credit line. The two flagship sets on IDIN's site are credited to DOF Sky | Ground.
+3. **Branch details for all seven:** address, hours, phone, parking, in Thai and English. A spreadsheet is ideal. Map links and positions are already recorded (below).
+4. **Menus:** current menu images per branch.
+5. **Small decisions:** which language a first-time visitor sees (I'd suggest Thai, with English one tap away); the email address enquiries go to; who holds the Editor login.
+6. **Fact check:** `PRODUCT.md` records what IDIN's site says about Chonburi and Khao Yai (areas, years, awards, the "38%" low-carbon concrete figure). Please confirm these before they're published, and tell me who designed the other five branches.
+7. **Name check:** the Google listings name the branches in three different ways (table below). Tell me the one form the website should use.
 
-1. **Your direction choice:** A, B, C or a mix.
-2. **SiteGround:** the name of your hosting plan, and whether another site already uses it.
-3. **Brand files:** logo, the signage font (and whether its licence covers websites), brand colours, any written brand rules.
-4. **Photographs:** which branches have professional sets, the files, and each photographer's permission and credit line. The two flagship sets on IDIN's site are credited to DOF Sky | Ground.
-5. **Branch details for all seven:** address, hours, phone, Google Maps link, parking, in Thai and English. A spreadsheet is ideal.
-6. **Menus:** current menu images per branch.
-7. **Small decisions:** which language a first-time visitor sees (I'd suggest Thai, with English one tap away); the email address enquiries go to; who holds the Editor login.
-8. **Fact check:** `PRODUCT.md` records what IDIN's site says about Chonburi and Khao Yai (areas, years, awards, the "38%" low-carbon concrete figure). Please confirm these before they're published, and tell me who designed the other five branches.
+### How to send files
+
+- **Google Drive link:** share one folder as "Anyone with the link: Viewer" and paste the link. Google Drive is reachable from my side, though downloading a large shared folder automatically is not guaranteed to work; if it fails I'll say so.
+- **Most reliable:** upload the files into this GitHub repository (Add file, Upload files), in a folder named `assets-from-harudot/`.
+- **Small files** such as the logo and font can be attached directly in the chat.
+
+Suggested folder layout: `brand/` (logo, font, colours), then one folder per branch with `photos/` and `menu/` inside, plus one spreadsheet of branch details. Photographs at about 2560 px on the long edge are plenty; camera originals aren't needed.
+
+### Branch positions, from your Google Maps links
+
+| Sheet | Branch | Name on the Google listing | Latitude, longitude | Maps link |
+|---|---|---|---|---|
+| 01 | Chonburi | Harudot Chonburi by Nana Coffee Roasters | 13.3382709, 100.9653611 | https://maps.app.goo.gl/tfMDVUywMt3NgQyj7 |
+| 02 | Khao Yai | Harudot Khaoyai by Nana Coffee Roasters | 14.5311616, 101.5211561 | https://maps.app.goo.gl/jqvHyqru8TGtiHhE7 |
+| 03 | Thonburi | Harudot Thonburi by Nana Coffee Roasters | 13.7123617, 100.4334358 | https://maps.app.goo.gl/Wh89DSY2WPgLSxjB6 |
+| 04 | Sukhumvit 22 | Harudot by Nana @Sukhumvit 22 | 13.7315914, 100.5649504 | https://maps.app.goo.gl/VjvkwJBBFGWPHsMZA |
+| 05 | Sukhumvit 71 | Harudot by Nana @Sukhumvit 71 | 13.7187939, 100.5954712 | https://maps.app.goo.gl/uss15QzoSqTS22e98 |
+| 06 | Sathorn | Harudot by Nana Makro Sathon | 13.7097744, 100.5353689 | https://maps.app.goo.gl/Fg4xBNe3HpoC898Y7 |
+| 07 | Future Park Rangsit | Harudot by Nana @Future Park Rangsit | 13.9895507, 100.6173983 | https://maps.app.goo.gl/Wm8DbpZGsfmV1LDc8 |
+
+The sheet numbers are a working order, not a ranking; tell me the order you'd like.
 
 ## 8. Steps
 
-1. **Gather** (you): items 2 to 6 above. Design can start as soon as the direction and a first batch of photos are in hand.
+1. **Gather** (you): items 1 to 4 above, and buy the WordPress.com Personal plan. Design can start as soon as the brand files and a first batch of photos are in hand.
 2. **Design** (me): the home page and one branch page at full fidelity with your real photographs, viewable in a browser, for your review.
-3. **Build** (me): the WordPress theme, the two content forms, Thai and English, the contact form, on a private preview address.
+3. **Build** (me): the WordPress theme, the two content forms, Thai and English, the map, the contact form, on the WordPress.com site before the domain is pointed at it.
 4. **Fill and check** (your staff, with a one-page guide from me): branch details, photos, menus; tested on real phones.
-5. **Launch:** point harudot.com at the site, switch on the security certificate, register with Google Search Console, link each branch's Google Business Profile to its page.
+5. **Launch:** change the name servers at SiteGround so harudot.com points at the site, register with Google Search Console, link each branch's Google Business Profile to its page.

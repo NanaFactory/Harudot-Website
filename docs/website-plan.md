@@ -2,7 +2,9 @@
 
 Plan for harudot.com, the first website for Harudot by Nana Coffee Roasters. Written 2026-11-26. Product facts and their sources are in [`PRODUCT.md`](../PRODUCT.md); this file is the plan built on them. Nothing has been built yet.
 
-**Status (updated 2026-11-26):** direction A is chosen, with a map of Thailand for picking a branch. Hosting is WordPress.com, Personal plan, with harudot.com staying registered at SiteGround. All recommended additions are approved. Design starts when the brand files and a first batch of photographs arrive (section 7).
+**Status (updated 2026-11-26, evening):** direction A is chosen, with a map for picking a branch. Hosting is WordPress.com, Personal plan, with harudot.com staying registered at SiteGround. The home page and the Chonburi page now exist as a working design prototype in [`prototype/`](../prototype/), built with your real logo, font, photographs and branch details. What is still missing is listed in section 7.
+
+To view the prototype on a computer, download the repository, then from the `prototype` folder run `python3 -m http.server` and open `http://localhost:8000`.
 
 ## 1. What the site is for
 
@@ -145,13 +147,19 @@ Phone first: the branch page on a phone is the most-used screen. Photographs are
 
 ## 7. What I need from you
 
-1. **Brand files:** logo, the signage font (and whether its licence covers websites), brand colours, any written brand rules.
-2. **Photographs:** for each branch, at least one exterior and one interior; full sets where they exist; each photographer's permission and credit line. The two flagship sets on IDIN's site are credited to DOF Sky | Ground.
-3. **Branch details for all seven:** address, hours, phone, parking, in Thai and English. A spreadsheet is ideal. Map links and positions are already recorded (below).
-4. **Menus:** current menu images per branch.
-5. **Small decisions:** which language a first-time visitor sees (I'd suggest Thai, with English one tap away); the email address enquiries go to; who holds the Editor login.
-6. **Fact check:** `PRODUCT.md` records what IDIN's site says about Chonburi and Khao Yai (areas, years, awards, the "38%" low-carbon concrete figure). Please confirm these before they're published, and tell me who designed the other five branches.
-7. **Name check:** the Google listings name the branches in three different ways (table below). Tell me the one form the website should use.
+Received so far: the logo, the haruno font, 86 photographs of Chonburi, 26 drink photographs, and address, phone and one day's hours for every branch (from Google Maps).
+
+Still needed:
+
+1. **Opening hours for the whole week.** Google only showed me Thursday's. The prototype shows those hours every day until you confirm.
+2. **Photographs of the other six branches.** Even two each (one outside, one inside) fills the map picker. Until then those branches show a marked gap.
+3. **Font permission.** The haruno font file says it is copyright IDIN Architects. Please confirm with IDIN that Harudot may use it on a public website.
+4. **Photographer credit.** The prototype credits "DOF Sky | Ground", taken from IDIN's site. Please confirm the wording and that the photographs may be used on the website.
+5. **Menus:** menu images per branch. Also tell me whether the drink photographs from the "Delivery Menu" folder may be shown as café menu items.
+6. **Thai names:** I've written branch names in Thai as "ฮารุดอท ชลบุรี บาย นานา คอฟฟี่ โรสเตอร์". Please confirm the spelling you use.
+7. **Korat:** the Drive folder has drawings for a Korat branch. Should the site announce it as coming soon?
+8. **Small decisions:** which language a first-time visitor sees (I'd suggest Thai); the email address enquiries go to; who holds the Editor login.
+9. **Fact check:** the Chonburi page says the building is by IDIN Architects, completed 2023, 475 sq m, and describes it in a few sentences drawn from IDIN's own project page. Please confirm.
 
 ### How to send files
 

@@ -1,0 +1,27 @@
+{
+  "_note": "Address, phone and hours were read from each branch's Google Maps listing on 2026-11-26 (a Thursday). Google showed only that day's hours, so the other six days are unconfirmed. Thai brand spelling follows the Chonburi listing and needs the owner's confirmation.",
+  "branches": [
+    {"n": "01", "slug": "chonburi", "en": "Chonburi", "th": "ชลบุรี", "areaEn": "Samet, Chon Buri", "areaTh": "เสม็ด ชลบุรี",
+     "addressEn": "Soi Nartmontasevee 30/10, Samet, Chon Buri District, Chon Buri 20000", "addressTh": "ซอยนารถมนตเสวี 30/10 ตำบลเสม็ด อำเภอเมืองชลบุรี ชลบุรี 20000",
+     "phone": "+66 62 415 4793", "open": "07:00", "close": "18:00", "lat": 13.3382709, "lng": 100.9653611, "maps": "https://maps.app.goo.gl/tfMDVUywMt3NgQyj7", "sheet": "chonburi.html",
+     "outside": "069", "inside": "044", "outsideAltEn": "Harudot Chonburi from the road: three black timber gables, each opening lined in pine", "insideAltEn": "The coffee bar under a curved pine ceiling"},
+    {"n": "02", "slug": "khao-yai", "en": "Khao Yai", "th": "เขาใหญ่", "areaEn": "Pak Chong, Nakhon Ratchasima", "areaTh": "ปากช่อง นครราชสีมา",
+     "addressEn": "9 Nong Chok, Pong Ta Long, Pak Chong District, Nakhon Ratchasima 30130", "addressTh": "9 หนองจอก ตำบลโป่งตาลอง อำเภอปากช่อง นครราชสีมา 30130",
+     "phone": "+66 92 914 6296", "open": "09:00", "close": "17:30", "lat": 14.5311616, "lng": 101.5211561, "maps": "https://maps.app.goo.gl/jqvHyqru8TGtiHhE7"},
+    {"n": "03", "slug": "thonburi", "en": "Thonburi", "th": "ธนบุรี", "areaEn": "Phasi Charoen, Bangkok", "areaTh": "ภาษีเจริญ กรุงเทพฯ",
+     "addressEn": "607 Phet Kasem Rd, Bang Wa, Phasi Charoen, Bangkok 10160", "addressTh": "607 ถนนเพชรเกษม แขวงบางหว้า เขตภาษีเจริญ กรุงเทพมหานคร 10160",
+     "phone": "+66 90 984 6600", "open": "07:00", "close": "19:00", "lat": 13.7123617, "lng": 100.4334358, "maps": "https://maps.app.goo.gl/Wh89DSY2WPgLSxjB6"},
+    {"n": "04", "slug": "sukhumvit-22", "en": "Sukhumvit 22", "th": "สุขุมวิท 22", "areaEn": "Khlong Toei, Bangkok", "areaTh": "คลองเตย กรุงเทพฯ",
+     "addressEn": "Makro Food Service Sukhumvit 22, Sukhumvit Alley 22, Khlong Toei, Bangkok 10110", "addressTh": "แม็คโคร ฟูดเซอร์วิส ซอยสุขุมวิท 22 แขวงคลองเตย เขตคลองเตย กรุงเทพมหานคร 10110",
+     "phone": "+66 90 888 0642", "open": "08:00", "close": "17:30", "lat": 13.7315914, "lng": 100.5649504, "maps": "https://maps.app.goo.gl/VjvkwJBBFGWPHsMZA"},
+    {"n": "05", "slug": "sukhumvit-71", "en": "Sukhumvit 71", "th": "สุขุมวิท 71", "areaEn": "Watthana, Bangkok", "areaTh": "วัฒนา กรุงเทพฯ",
+     "addressEn": "Makro Food Service Sukhumvit 71, 181 185 Sukhumvit 71 Rd, Phra Khanong Nuea, Watthana, Bangkok 10110", "addressTh": "แม็คโคร ฟูดเซอร์วิส สุขุมวิท 71 เลขที่ 181 185 ถนนสุขุมวิท 71 แขวงพระโขนงเหนือ เขตวัฒนา กรุงเทพมหานคร 10110",
+     "phone": "+66 90 888 3024", "open": "08:00", "close": "17:30", "lat": 13.7187939, "lng": 100.5954712, "maps": "https://maps.app.goo.gl/uss15QzoSqTS22e98"},
+    {"n": "06", "slug": "sathorn", "en": "Sathorn", "th": "สาทร", "areaEn": "Sathon, Bangkok", "areaTh": "สาทร กรุงเทพฯ",
+     "addressEn": "Makro Sathorn, 1 Naradhiwas Rajanagarindra Rd, Thung Wat Don, Sathon, Bangkok 10120", "addressTh": "แม็คโคร สาทร เลขที่ 1 ถนนนราธิวาสราชนครินทร์ แขวงทุ่งวัดดอน เขตสาทร กรุงเทพมหานคร 10120",
+     "phone": "+66 90 888 0324", "open": "08:00", "close": "17:30", "lat": 13.7097744, "lng": 100.5353689, "maps": "https://maps.app.goo.gl/Fg4xBNe3HpoC898Y7"},
+    {"n": "07", "slug": "future-park-rangsit", "en": "Future Park Rangsit", "th": "ฟิวเจอร์พาร์ค รังสิต", "areaEn": "Thanyaburi, Pathum Thani", "areaTh": "ธัญบุรี ปทุมธานี",
+     "addressEn": "Future Park, G floor, Robinson zone, 94 Phahonyothin Rd, Prachathipat, Thanyaburi, Pathum Thani 12130", "addressTh": "ฟิวเจอร์พาร์ค ชั้น G โซนโรบินสัน เลขที่ 94 ถนนพหลโยธิน ตำบลประชาธิปัตย์ อำเภอธัญบุรี ปทุมธานี 12130",
+     "phone": "+66 90 888 0724", "open": "10:30", "close": "19:00", "lat": 13.9895507, "lng": 100.6173983, "maps": "https://maps.app.goo.gl/Wm8DbpZGsfmV1LDc8"}
+  ]
+}

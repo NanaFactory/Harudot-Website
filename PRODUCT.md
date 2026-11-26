@@ -71,16 +71,24 @@ Open: which branches have professional sets; where enquiries should be delivered
 ## Brand Commitments
 
 - Name: "Harudot by Nana Coffee Roasters" **(confirmed)**.
+- Branch names take the form "Harudot Chonburi by Nana Coffee Roasters": Harudot, the branch, then by Nana Coffee Roasters **(confirmed 2026-11-26)**. The Thai form used so far, "ฮารุดอท ชลบุรี บาย นานา คอฟฟี่ โรสเตอร์", follows the Chonburi Google listing and is not yet confirmed.
 - Design reference named by the owner: idinarchitects.com **(confirmed)**. It sets the bar for how photographs are treated; it is not a template to copy.
 - **(IDIN)**: Harudot has custom-designed fonts and signage "inspired from circular dots and the spring season".
 
-Open: the Harudot logo files, the custom font files and their licence for web use, brand colours and any written brand rules. None are in this repository.
+- Logo: `Harudot Official Logo.ai` in the repository root **(supplied 2026-11-26)**. A lowercase monoline wordmark with "BY NANA COFFEE ROASTERS" beneath.
+- Display face: `haruno-regular (1).otf` **(supplied)**. Latin letters, numerals and basic punctuation only; no Thai. Its embedded notice reads "Copyright © 2023 by IDIN Architects", designer Pornnapath Khampiranon.
+
+Open: whether Harudot's agreement with IDIN Architects allows haruno to be served on a public website; brand colours and any written brand rules (none supplied).
 
 ## Evidence on Hand
 
 - **(IDIN)** Harudot Chonburi: Chonburi, Thailand; usable area 475 sq.m; design 2022, completion 2023; architect and interior IDIN Architects; photographs DOF Sky | Ground. Three black gable forms pulled apart around a bottle tree (baobab) in an inner court; warm pine interior; ribbon-like continuous seating; terrazzo floor with circular separations, embedded words and a petal pattern; outdoor seating of resin mixed with coffee grounds, rice and leaves. Award listed: Prime Minister's (title truncated in the capture; verify before use).
 - **(IDIN)** Harudot Khao Yai: Nakhon Ratchasima, Thailand; usable area 500 sq.m; design 2024, completion 2025; architect and interior IDIN Architects; landscape Shma; photographs DOF Sky | Ground. Ground cut, lifted and folded after Kirikami; a public viewpoint reachable without entering the café; cast-in-place low-carbon concrete with calcined clay ("reduces carbon dioxide emissions by up to 38%"); about 70% outdoor and 30% indoor space. Award listed: Room x Living ASEAN Selected Awards, Award of Design Experience in café.
-- No photographs, logo, menus or copy are in this repository yet.
+- Photographs **(supplied 2026-11-26, Google Drive)**: 86 professional photographs of Harudot Chonburi, in web and high-resolution sizes. Three are also in the repository root. No photographs of the other six branches.
+- Drink photographs **(supplied)**: 10 hot and 16 iced drinks, each named by its file (for example haru haru, Kuro, Shiro, Premium Matcha). They came in a folder called "Delivery Menu"; whether they may stand for the in-café menu is open.
+- Address and phone for all seven branches, and the opening hours for one day (Thursday 2026-11-26), read from the Google Maps listings at the owner's instruction. They are in `content/branches.json`. The other six days' hours are unknown.
+- Design documents, not for publication: interior presentations for Khao Yai and for "Seacon" (filed under Bangkae; the Thonburi listing's address is 607 Phet Kasem Rd), and a set for "Korat" dated 2026-11-17. Whether Korat is a branch to announce is open.
+- No menu images and no promotions have been supplied.
 
 Must not be fabricated: addresses, hours, phone numbers, prices, menu items, promotions, awards, architect or photographer credits for the five other branches, and photographs presented as Harudot's own. Photographs need the photographer's permission and credit before publication.
 

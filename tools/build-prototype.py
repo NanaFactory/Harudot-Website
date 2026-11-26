@@ -125,7 +125,7 @@ def home():
     b = BY['chonburi']
     rows = ''
     for x in B:
-        sheet = f'<a class="btn" href="{x["sheet"]}">{t("See this branch", "ดูสาขานี้")}{ARROW}</a>' if x.get('sheet') else ''
+        sheet = f'<a class="btn" href="{x["sheet"]}">{t("View branch", "ดูสาขานี้")}{ARROW}</a>' if x.get('sheet') else ''
         rows += f'''<li data-branch="{x['slug']}"><div class="row">
       <span class="row__n">{x['n']}</span>
       <button type="button" class="row__name" data-branch="{x['slug']}">{t(nm(x['en'].lower()), nm(x['th']))}</button>
@@ -163,7 +163,7 @@ def home():
     <div><span class="lbl">{t('Where', 'ที่ตั้ง')}</span><p class="val"><span data-f="area-en" data-l="en" lang="en">{b['areaEn']}</span><span data-f="area-th" data-l="th" lang="th">{b['areaTh']}</span></p></div>
     <div><span class="lbl">{t('Call', 'โทร')}</span><p class="val"><a data-f="phone" href="tel:{b['phone'].replace(' ', '')}">{b['phone'].replace('+66 ', '0')}</a></p></div>
     <div class="tb__act"><a class="btn btn--fill" data-f="maps" href="{b['maps']}" target="_blank" rel="noopener">{t('Directions', 'เส้นทาง')}{PIN}</a></div>
-    <div class="tb__act"><a class="btn" data-f="sheet" href="chonburi.html"><span data-sheet-label="yes">{t('See this branch', 'ดูสาขานี้')}</span><span data-sheet-label="no" hidden>{t('Page coming soon', 'หน้าสาขากำลังตามมา')}</span>{ARROW}</a></div>
+    <div class="tb__act"><a class="btn" data-f="sheet" href="chonburi.html"><span data-sheet-label="yes">{t('View branch', 'ดูสาขานี้')}</span><span data-sheet-label="no" hidden>{t('Coming soon', 'เร็วๆ นี้')}</span>{ARROW}</a></div>
   </div>
 </section>
 

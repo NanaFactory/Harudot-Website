@@ -79,6 +79,7 @@ html[data-lang="en"] [data-l="th"], html[data-lang="th"] [data-l="en"] { display
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; min-height: 3rem; padding: 0.7rem 1.15rem; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background-color 0.18s var(--ease), color 0.18s var(--ease); }
 .btn:lang(th), .btn :lang(th) { letter-spacing: 0.02em; font-size: 0.9375rem; }
 .btn svg { width: 1rem; height: 1rem; flex: none; }
+.btn > span { white-space: nowrap; }
 .btn:hover { background: var(--ink); color: var(--paper); }
 .btn:active { transform: translateY(1px); }
 .btn--fill { background: var(--clay); }
@@ -139,8 +140,9 @@ html[data-lang="en"] [data-l="th"], html[data-lang="th"] [data-l="en"] { display
 .map .pt { cursor: pointer; outline: none; }
 .map .pt .hit { fill: transparent; transition: fill 0.15s; }
 .map .pt .hit-dot { fill: transparent; }
-.map .lead { stroke-dasharray: 1; animation: draw 0.9s var(--ease) 0.25s backwards; }
-@keyframes draw { from { stroke-dashoffset: 1; } }
+/* The drawn line is the resting state; the animation only plays it in once. */
+.map .lead { animation: draw 0.9s var(--ease); }
+@keyframes draw { from { stroke-dasharray: 1; stroke-dashoffset: 1; } to { stroke-dasharray: 1; stroke-dashoffset: 0; } }
 .map .pt .dot { fill: var(--ink); stroke: var(--ink); stroke-width: 0; transition: r 0.25s var(--ease), fill 0.15s; }
 .map .pt:hover .hit { fill: var(--clay-wash); }
 .map .pt:focus-visible .hit { stroke: var(--ink); stroke-width: 1.5; }
@@ -161,6 +163,7 @@ html[data-lang="en"] [data-l="th"], html[data-lang="th"] [data-l="en"] { display
 .tb dt, .tb .lbl { display: block; margin-bottom: 0.3rem; }
 .tb .tb__act .btn .lbl { display: inline; margin: 0; }
 .tb dd, .tb .val { font-size: 1rem; line-height: 1.4; font-weight: 500; }
+.tb .val.name { font-weight: 300; }
 .tb a[href^="tel"] { white-space: nowrap; }
 .tb .btn { border: 0; min-height: 100%; }
 .tb .tb__act { padding: 0; display: grid; }
@@ -296,7 +299,7 @@ html[data-lang="en"] [data-l="th"], html[data-lang="th"] [data-l="en"] { display
   .map-d { display: none; } .map-m { display: block; }
   .row { grid-template-columns: 2rem minmax(0, 1fr); }
   .row__meta { grid-column: 2; }
-  .row__acts { grid-column: 2; }
+  .row__acts { grid-column: 1 / -1; }
   .row .btn { flex: 1; }
   .menu { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .promo { grid-template-columns: 6.5rem minmax(0, 1fr); }

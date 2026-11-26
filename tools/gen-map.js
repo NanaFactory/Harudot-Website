@@ -22,8 +22,6 @@ function build(id, W, H, kw, kh, fs_, keyAt) {
   const pt = Object.fromEntries(B.map(b => [b.slug, pj([b.lng, b.lat]).map(r1)]));
   const km20 = Math.abs(pj([100.5, 13.5])[1] - pj([100.5, 13.5 + 20 / 111.2])[1]);
   const gap = fs_ + 9, lx = 10, top = pt.thonburi[1] - gap * 3 + 4;
-  // Rough advance widths: enough to size tap areas and start leaders clear of the longer language.
-  const tw = b => Math.max((b.en.length + 3) * fs_ * 0.68, ([...b.th].filter(c => !/[ัิ-ฺ็-๎]/.test(c)).length + 3) * fs_ * 0.62);
   let s = `<svg class="map map-${id}" viewBox="0 0 ${W} ${H}" role="group" aria-label="Map of Harudot branches around Bangkok, Chonburi and Khao Yai"><defs><pattern id="sea-${id}" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0 3h6" class="sea-line"/></pattern></defs>`;
   s += `<rect width="${W}" height="${H}" fill="url(#sea-${id})"/><path class="land" d="${d3.geoPath(pj)(thailand('10m'))}"/>`;
   const g = pj([100.72, 13.14]); s += both('GULF OF THAILAND', 'อ่าวไทย', `class="place" x="${r1(g[0])}" y="${r1(g[1])}" text-anchor="middle" font-size="${fs_ - 1}"`);
@@ -31,20 +29,28 @@ function build(id, W, H, kw, kh, fs_, keyAt) {
   s += `<g class="north" transform="translate(${W - 24},22)"><path d="M0 18V-6m0 0-5 9m5-9 5 9"/><text x="0" y="33" text-anchor="middle" font-size="${fs_ - 1}">N</text></g>`;
   const kxy = keyAt === 'top-left' ? [0, 0] : [W - kw - 1, H - kh - 1];
   s += `<g class="key" transform="translate(${kxy})"><rect x=".5" y=".5" width="${kw}" height="${kh}"/><path d="${d3.geoPath(kp)(thailand('50m'))}"/><rect class="here" x="${r1(kx0)}" y="${r1(ky0)}" width="${r1(kx1 - kx0)}" height="${r1(ky1 - ky0)}"/>${both('THAILAND', 'ประเทศไทย', `x="${kw / 2}" y="${kh - 6}" text-anchor="middle" font-size="${fs_ - 2}"`)}</g>`;
+  // Rough advance widths, per language: they size each label's tap row and say where its leader starts.
+  const wEn = b => (b.en.length + 3) * fs_ * 0.68;
+  const wTh = b => ([...b.th].filter(c => !/[ัิ-ฺ็-๎]/.test(c)).length + 3) * fs_ * 0.6;
   for (const b of B) {
-    const [x, y] = pt[b.slug]; let tx, ty, anchor = 'start', lead = '';
-    const si = STACK.indexOf(b.slug), w = tw(b);
-    if (si >= 0) { tx = lx; ty = top + gap * si; const ex = tx + w + 6; lead = `M${r1(ex)} ${r1(ty - 4)}H${r1(Math.max(ex + 4, x - Math.abs(y - (ty - 4))))}L${x} ${y}`; }
+    const [x, y] = pt[b.slug]; let tx, ty, anchor = 'start';
+    const si = STACK.indexOf(b.slug);
+    if (si >= 0) { tx = lx; ty = top + gap * si; }
     else if (b.slug === 'khao-yai') { tx = x - 12; ty = y + 4; anchor = 'end'; }
-    else if (b.slug === 'future-park-rangsit') { tx = x + 14; ty = y - 12; lead = `M${x} ${y}L${r1(tx - 3)} ${r1(ty + 2)}`; }
+    else if (b.slug === 'future-park-rangsit') { tx = x + 14; ty = y - 12; }
     else { tx = x + 14; ty = y + 4; }
-    // The tap area is one label row high, so stacked labels never cover each other; the point gets its own small target.
-    let hx = anchor === 'end' ? tx - w - 4 : tx - 4, hw = w + 8;
-    if (si < 0 && Math.abs(ty - 4 - y) < 3) { const x0 = Math.min(hx, x - 9), x1 = Math.max(hx + hw, x + 9); hx = x0; hw = x1 - x0; }
     s += `<g class="pt" data-branch="${b.slug}" role="button" tabindex="0" aria-pressed="false" aria-label="Harudot ${b.en}">`;
-    if (lead) s += `<path class="lead" pathLength="1" d="${lead}"/>`;
-    s += `<rect class="hit" x="${r1(hx)}" y="${r1(ty - fs_ - 3)}" width="${r1(hw)}" height="${r1(fs_ + 9)}"/><circle class="hit-dot" cx="${x}" cy="${y}" r="8"/>`;
-    s += `<circle class="dot" cx="${x}" cy="${y}" r="4"/>`;
+    // One leader and one tap row per language, so neither is sized for the other's text.
+    for (const [l, w] of [['en', wEn(b)], ['th', wTh(b)]]) {
+      let lead = '';
+      if (si >= 0) { const ex = tx + w + 6; lead = `M${r1(ex)} ${r1(ty - 4)}H${r1(Math.max(ex + 4, x - Math.abs(y - (ty - 4))))}L${x} ${y}`; }
+      else if (b.slug === 'future-park-rangsit') lead = `M${x} ${y}L${r1(tx - 3)} ${r1(ty + 2)}`;
+      if (lead) s += `<path class="lead" pathLength="1" data-l="${l}" d="${lead}"/>`;
+      let hx = anchor === 'end' ? tx - w - 4 : tx - 4, hw = w + 8;
+      if (si < 0 && Math.abs(ty - 4 - y) < 3) { const x0 = Math.min(hx, x - 9), x1 = Math.max(hx + hw, x + 9); hx = x0; hw = x1 - x0; }
+      s += `<rect class="hit" data-l="${l}" x="${r1(hx)}" y="${r1(ty - fs_ - 3)}" width="${r1(hw)}" height="${r1(fs_ + 9)}"/>`;
+    }
+    s += `<circle class="hit-dot" cx="${x}" cy="${y}" r="8"/><circle class="dot" cx="${x}" cy="${y}" r="4"/>`;
     s += both(`<tspan class="n">${b.n}</tspan> ${b.en.toUpperCase()}`, `<tspan class="n">${b.n}</tspan> ${b.th}`, `x="${r1(tx)}" y="${r1(ty)}" text-anchor="${anchor}" font-size="${fs_}"`) + '</g>';
   }
   return s + '</svg>';

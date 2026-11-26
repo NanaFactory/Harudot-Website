@@ -5,7 +5,7 @@ Run from the repository root:  python3 tools/build-prototype.py
 The two pages share a masthead, a foot and the branch map, so they are assembled here
 rather than kept in step by hand. The output is plain HTML with no build step of its own.
 """
-import json, os, glob, html
+import json, os, glob, html, sys
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -261,6 +261,32 @@ def chonburi():
 </nav>
 ''' + foot()
 
+
+def shareable(page, out_dir):
+    """A copy for publishing as a private preview page: the host supplies the document shell for the
+    entry page, and the brand face is embedded so it cannot silently fall back."""
+    import base64, re, shutil
+    font = base64.b64encode(open(os.path.join(P, 'assets/fonts/haruno-regular.woff2'), 'rb').read()).decode()
+    extra = ('<meta name="claude:viewport-fit-sides" content="cover">\n'
+             '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap">\n'
+             '<link rel="stylesheet" href="assets/css/site.css">\n'
+             '<style>@font-face { font-family: "haruno"; src: url("data:font/woff2;base64,' + font + '") format("woff2"); font-weight: 400; unicode-range: U+0020-002F, U+003A-007E; }\n'
+             '.sheet { padding-left: max(var(--m), env(safe-area-inset-left, 0px)); padding-right: max(var(--m), env(safe-area-inset-right, 0px)); }</style>\n')
+    page = re.sub(r'<link rel="preload"[^>]*>\n', '', page).replace('<link rel="stylesheet" href="assets/css/site.css">\n', extra)
+    return page
+
+
+if '--share' in sys.argv:
+    out = sys.argv[sys.argv.index('--share') + 1]
+    os.makedirs(out, exist_ok=True)
+    h = shareable(home(), out).replace('<title>Harudot by Nana Coffee Roasters</title>', '<title>Harudot Website Prototype</title>')
+    # entry page: content only, the host wraps it
+    body = h.split('<body>', 1)[1].rsplit('</body>', 1)[0]
+    headbits = ''.join(l + '\n' for l in h.split('<head>', 1)[1].split('</head>', 1)[0].splitlines() if l.startswith(('<title', '<meta name="claude', '<link', '<style', '.sheet')))
+    boot = '<script>document.documentElement.dataset.lang = "en"; document.documentElement.dataset.branch = "chonburi";</script>\n'
+    open(os.path.join(out, 'index.html'), 'w', encoding='utf-8').write(headbits + boot + body)
+    open(os.path.join(out, 'chonburi.html'), 'w', encoding='utf-8').write(shareable(chonburi(), out))
+    print('share copy written to', out)
 
 open(os.path.join(P, 'index.html'), 'w', encoding='utf-8').write(home())
 open(os.path.join(P, 'chonburi.html'), 'w', encoding='utf-8').write(chonburi())
